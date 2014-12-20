@@ -1,6 +1,5 @@
 " don't bother with vi compatibility
 set nocompatible
-set shell=zsh
 
 " Pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
