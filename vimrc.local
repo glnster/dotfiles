@@ -13,9 +13,10 @@ if (&t_Co == 256 || has('gui_running'))
     set background=dark
     let g:solarized_termtrans=1
     let g:solarized_termcolors=256
-    let g:solarized_contrast="high"
+    let g:solarized_contrast="low"
     let g:solarized_visibility="high"
-    colorscheme jellybeans
+    colorscheme sweater
+    "colorscheme jellybeans
     " colorscheme solarized
   else
     colorscheme desert

@@ -82,3 +82,12 @@
 [submodule "vim/bundle/YouCompleteMe"]
 	path = vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "vim/colors/Spacegray.vim"]
+	path = vim/colors/Spacegray.vim
+	url = https://github.com/ajh17/Spacegray.vim.git
+[submodule "vim/colors/vim-atom-dark"]
+	path = vim/colors/vim-atom-dark
+	url = https://github.com/gosukiwi/vim-atom-dark.git
+[submodule "vim/colors/sweater"]
+	path = vim/colors/sweater
+	url = https://github.com/nice/sweater
