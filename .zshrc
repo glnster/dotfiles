@@ -80,13 +80,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # 
 # Or place aliases here:
-# source $HOME/.aliases
-alias zshconfig="subl ~/.zshrc"
-alias ohmyzsh="subl ~/.oh-my-zsh"
-alias rdf="rm -rf"
-alias ht="cd /Applications/MAMP/htdocs"
-alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-alias gaa="git add -A"
-alias gsa="git submodule add"
-alias v="vim"
-alias gsubup="git submodule update --init --recursive"
+source $HOME/.aliases
+
+# functions
+source $HOME/.functions
