@@ -71,7 +71,6 @@ alias stt='st .'
 alias zshconf="subl ~/.zshrc"
 alias ohmyzsh="subl ~/.oh-my-zsh"
 
-# ------- Git -----------
 alias g=git
 alias ga='git add'
 alias gaa='git add -A'
@@ -126,6 +125,8 @@ alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grh='git reset HEAD'
 alias grhh='git reset HEAD --hard'
+alias grhom='git reset --hard origin/master'
+alias grhod='git reset --hard origin/develop'
 alias grmv='git remote rename'
 alias grrm='git remote remove'
 alias grset='git remote set-url'
