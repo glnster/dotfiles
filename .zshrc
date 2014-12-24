@@ -84,3 +84,6 @@ source $HOME/.aliases
 
 # functions
 source $HOME/.functions
+
+# extras local to machine and not committed
+source $HOME/.extra

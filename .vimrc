@@ -120,6 +120,10 @@ endif
 "nnoremap <C-Tab> :bn<CR>
 "nnoremap <C-S-Tab> :bp<CR>
 
+" File Tabs
+nnoremap ,tp tabp<CR>
+nnoremap ,tn tabn<CR>
+
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k

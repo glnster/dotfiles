@@ -12,7 +12,11 @@ dots=('.aliases'
       '.vimrc'
       '.vimrc.bundles'
       '.zshrc'
+      '.gitconfig'
+      '.gitignore_global'
       );
+
+# TODO check if file exists in dotfiles before rm. Else alert and skip.
 
 for dot in "${dots[@]}"
 do
