@@ -158,7 +158,7 @@ alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit -m "--wip--"'
 # Undo a `git push`
 alias gundopush="git push -f origin HEAD^:master"
-alias gunstage'"git reset --"
+alias gunstage="git reset --"
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 #alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
