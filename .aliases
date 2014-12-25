@@ -68,51 +68,56 @@ alias map="xargs -n1"
 
 # ------------ APPLICATIONS ------------- 
 # Shortcuts
-alias v="vim"
-alias s=subl
-alias stt='st .'
-alias zshconf="subl ~/.zshrc"
-alias ohmyzsh="subl ~/.oh-my-zsh"
+# vim & sublime - see .functions
 
-alias g=git
+# Git
+alias g='git'
 alias ga='git add'
 alias gaa='git add -A'
 alias gap='git add --patch'
+
 alias gb='git branch'
 alias gba='git branch -a'
 alias gbr='git branch --remote'
+
 alias gc='git commit -v'
-alias 'gc!'='git commit -v --amend'
+alias gc!='git commit -v --amend'
 alias gca='git commit -v -a'
-alias 'gca!'='git commit -v -a --amend'
+alias gca!='git commit -v -a --amend'
+alias gcmsg='git commit -m'
+alias gcs='git commit -S'
+
+alias gco='git checkout'
 alias gcd='git checkout develop'
 alias gch='git checkout hotfix'
-alias gcl='git config --list'
-alias gclean='git reset --hard && git clean -dfx'
 alias gcm='git checkout master'
-alias gcmsg='git commit -m'
-alias gco='git checkout'
+alias gcr='git checkout release'
+
+alias gcon='git config --list'
 alias gcount='git shortlog -sn'
 alias gcp='git cherry-pick'
-alias gcr='git checkout release'
-alias gcs='git commit -S'
+
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gdt='git difftool'
+
 alias gf='git fetch'
 alias gfl='git flow'
+
 alias gg='git gui citool'
 alias gga='git gui citool --amend'
+
 alias gpl='git pull'
 alias gplnp='git pull origin $(current_branch) && git push origin $(current_branch)'
 alias gplo='git pull origin $(current_branch)'
 alias gplr='git pull --rebase'
 alias gplro='git pull --rebase origin $(current_branch)'
-alias ggpush='git push origin $(current_branch)'
+
 alias gignore='git update-index --assume-unchanged'
 alias gignored='git ls-files -v | grep "^[[:lower:]]"'
 alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
 alias gk='gitk --all --branches'
+
 alias glg='git log --stat --max-count=10'
 alias glgg='git log --graph --max-count=10'
 alias glgga='git log --graph --decorate --all'
@@ -120,36 +125,47 @@ alias glo='git log --oneline --decorate --color'
 alias globurl='noglob urlglobber '
 alias glog='git log --oneline --decorate --color --graph'
 alias glp=_git_log_prettily
+
 alias gm='git merge'
 alias gmt='git mergetool --no-prompt'
+
 alias gp='git push'
+alias gpo='git push origin $(current_branch)'
 alias gpoat='git push origin --all && git push origin --tags'
-alias gr='git remote'
+
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
+
 alias grh='git reset HEAD'
+alias grclean='git reset --hard && git clean -dfx'
 alias grhh='git reset HEAD --hard'
 alias grhom='git reset --hard origin/master'
 alias grhod='git reset --hard origin/develop'
+
+alias gr='git remote'
 alias grmv='git remote rename'
 alias grrm='git remote remove'
 alias grset='git remote set-url'
 alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
 alias grup='git remote update'
 alias grv='git remote -v'
-alias gsa='git submodule add'
-alias gsd='git svn dcommit'
+
 alias gsps='git show --pretty=short --show-signature'
+alias gsd='git svn dcommit'
 alias gsr='git svn rebase'
+
 alias gss='git status -s'
 alias gst='git status'
-alias gsa="git submodule add"
+
 alias gsta='git stash'
 alias gstd='git stash drop'
 alias gstp='git stash pop'
 alias gsts='git stash show --text'
+
+alias gsa='git submodule add'
 alias gsubup='git submodule update --init --recursive'
+
 alias gts='git tag -s'
 alias gunignore='git update-index --no-assume-unchanged'
 alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
@@ -161,10 +177,6 @@ alias gunstage="git reset --"
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 #alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
-
-# Merge PDF files
-# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
-alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '

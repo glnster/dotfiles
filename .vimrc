@@ -89,8 +89,8 @@ map <leader>p :set invpaste paste?<CR>
 
 " Buffer navigation (,,) (,]) (,[) (,ls)
 map <Leader>, <C-^>
-map <Leader>] :bn<CR>
-map <Leader>[ :bp<CR>
+map <Leader>- :bn<CR>
+map <Leader>= :bp<CR>
 map <Leader>ls :buffers<CR>
 
 " Close Quickfix window (,qq)

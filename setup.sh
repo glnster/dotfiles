@@ -6,6 +6,7 @@ cd $HOME
 dots=('.aliases'
       '.bash_profile'
       '.bash_prompt'
+      '.bashrc'
       '.exports'
       '.functions'
       '.vim'
