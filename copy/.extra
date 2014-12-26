@@ -1,0 +1,2 @@
+# Settings local to this machine.
+# This file gets copied and not symlinked to ~/ during setup.sh.

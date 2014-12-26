@@ -1,5 +1,14 @@
 # BY https://github.com/mathiasbynens
 # modified by me
+
+[user]
+# name = First Last
+# email = user@example.com
+
+[push]
+# For older Git installations use matching
+# default=matching
+default=simple
   
 [alias]
 
@@ -146,13 +155,6 @@
 [mergetool "sourcetree"]
   cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   trustExitCode = true
-
-[push]
-
-  # Use the Git 1.x.x default to avoid errors on machines with old Git
-  # installations. To use `simple` instead, add this to your `~/.extra` file:
-  # `git config --global push.default simple`. See http://git.io/mMah-w.
-  # default = matching
 
 # URL shorthands
 
