@@ -2,13 +2,13 @@
 # modified by me
 
 [user]
-# name = First Last
-# email = user@example.com
+name = First Last
+email = user@example.com
 
 [push]
 # For older Git installations use matching
-# default=matching
-default=simple
+default=matching
+
   
 [alias]
 

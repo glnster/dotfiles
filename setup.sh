@@ -21,6 +21,7 @@ copies=('.extra'
         '.gitconfig'
         );
 
+# Make symlinks to dotfiles
 for dot in "${dots[@]}"
 do
   ln -sf dotfiles/$dot $dot
@@ -28,24 +29,26 @@ done
 
 echo "» In $PWD"
 
+# Make backups of copy files
 for copy in "${copies[@]}"
 do
   if [ -f $copy ]; then
-    echo "» Saving $copy as $copy.bak"
-    cp $copy $copy.bak
+    echo "» Saving $copy as ~/dotfiles/copy/$copy.bak"
+    cp $copy dotfiles/copy/$copy.bak
   fi
 done
 
-# Copy files to ~/. Prompt for overwriting.
 echo
-cp -Ri dotfiles/copy/. .
 
-echo
-while true; do
-    read -p "Edit .gitconfig credentials? y/n : " yn
-    case $yn in
-        [Yy]* ) "${EDITOR:-vi}" .gitconfig; break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer y or n.";;
-    esac
+# Copy the copy files to ~/. Prompt for overwriting.
+for copy in "${copies[@]}"
+do
+  if [ -f $copy ]; then
+    cp -Ri dotfiles/copy/$copy .
+  else
+    cp dotfiles/copy/$copy .
+  fi
 done
+
+# Run .gitconfig setup
+./dotfiles/setupgit.sh
