@@ -129,6 +129,7 @@ alias glp=_git_log_prettily
 alias gm='git merge'
 alias gmt='git mergetool --no-prompt'
 
+alias gp='echo use "gpsh"'
 alias gpsh='git push'
 alias gpo='git push origin $(current_branch)'
 alias gpoat='git push origin --all && git push origin --tags'
@@ -169,11 +170,12 @@ alias gsubup='git submodule update --init --recursive'
 alias gts='git tag -s'
 alias gunignore='git update-index --no-assume-unchanged'
 alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
+alias gundopush="git push -f origin HEAD^:master"
+alias gunstage="git reset --"
 alias gvt='git verify-tag'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit -m "--wip--"'
-alias gundopush="git push -f origin HEAD^:master"
-alias gunstage="git reset --"
+alias gwho='git config user.name && git config user.email'
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 #alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
@@ -197,8 +199,8 @@ command -v sha1sum > /dev/null || alias sha1sum="shasum"
 
 # ------------ SYSTEM -------------
 # Reload the shell (i.e. invoke as a login shell)
-alias reload="exec $SHELL -l"
-alias relzsh=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+alias reload="echo 'Reloading $SHELL' && exec $SHELL -l"
+alias relzsh=". ~/.zshrc && echo 'zsh reloaded'"
 
 # Clean up LaunchServices to remove duplicates in the “Open With” menu
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
