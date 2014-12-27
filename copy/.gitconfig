@@ -136,7 +136,6 @@ default=matching
 
   # Detect copies as well as renames
   renames = copies
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
   tool = Kaleidoscope
 
 [difftool "Kaleidoscope"]
