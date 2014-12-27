@@ -129,7 +129,7 @@ alias glp=_git_log_prettily
 alias gm='git merge'
 alias gmt='git mergetool --no-prompt'
 
-alias gp='git push'
+alias gpsh='git push'
 alias gpo='git push origin $(current_branch)'
 alias gpoat='git push origin --all && git push origin --tags'
 
