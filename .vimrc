@@ -1,69 +1,110 @@
-" don't bother with vi compatibility
+" .vimrc
+
+" !silent is used to suppress error messages if the config line
+" references plugins/colorschemes that might be missing
+
+" Disable Vi compatibility
 set nocompatible
 
-" Pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
+" Don't show the intro message when starting vim.
+set shortmess=atI
+
+" Point to location of pathogen submodule (since it's not in .vim/autoload)
+silent! runtime bundle/vim-pathogen/autoload/pathogen.vim
+
 " To disable a plugin, add it's bundle name to the following list
 let g:pathogen_disabled = ['YouCompleteMe']
 
-" enable syntax highlighting
-syntax enable
+" Call pathogen plugin management
+"execute pathogen#infect()
+silent! call pathogen#infect()
 
-execute pathogen#infect()
+if has("autocmd")
+    " Load files for specific filetypes
+    filetype on
+    filetype indent on
+    filetype plugin on
+    filetype plugin indent on
 
-" ensure ftdetect et al work by including this after the Vundle stuff
-filetype plugin indent on
+    " Languages with specific tabs/space requirements
+    autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
+    " Automatically strip trailing whitespace on file save
+    autocmd BufWritePre *.css,*.html,*.js,*.json,*.md,*.php,*.py,*.rb,*.scss,*.sh,*.txt :call StripTrailingWhitespace()
+    " Don't treat json as javascript
+    autocmd BufRead,BufNewFile *.json set filetype=json
+    " fdoc is yaml
+    autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
+    " md is markdown
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.md set spell
+    " automatically rebalance windows on vim resize
+    autocmd VimResized * :wincmd =
+endif
 
-set autoindent
-set autoread                                                 " reload files when changed on disk, i.e. via `git checkout`
-set backspace=2                                              " Fix broken backspace in some setups
-set backupcopy=yes                                           " see :help crontab
-set clipboard=unnamed                                        " yank and paste with the system clipboard
-set cursorline
-set directory-=.                                             " don't store swapfiles in the current directory
-set encoding=utf-8
-set expandtab                                                " expand tabs to spaces
-set ignorecase                                               " case-insensitive search
-set incsearch                                                " search as you type
-set laststatus=2                                             " always show statusline
-set list                                                     " show trailing whitespace
-set listchars=tab:▸\ ,trail:▫
-set number                                                   " show line numbers
-set noerrorbells
-set novisualbell
-set ruler                                                    " show where you are
-set scrolloff=3                                              " show context above/below cursorline
-set shiftwidth=2                                             " normal mode indentation commands use 2 spaces
-set showcmd
-set smartcase                                                " case-sensitive search if any caps
-set softtabstop=2                                            " insert mode tab and backspace use 2 spaces
-set tabstop=8                                                " actual tabs occupy 8 characters
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
-set wildmenu                                                 " show a navigable menu for tab completion
-set wildmode=longest,list,full
+if has("syntax")
+    " Enable syntax highlighting
+    syntax enable
+    " Set 256 color terminal support
+    set t_Co=256
+    " Set dark background
+    set background=dark
+    " Set colorscheme
+    silent! colorscheme solarized
+endif
 
-" more settings
-set foldcolumn=4 " Column to show folds
-set foldenable
-set foldlevel=2
-" set foldlevelstart=2 " Sets `foldlevel` when editing a new buffer
-set foldmethod=syntax " Markers are used to specify folds.
-set foldminlines=0 " Allow folding single lines
-set foldnestmax=3 " Set max fold nesting level
-set hlsearch " Highlight searches
-set ignorecase " Ignore case of searches.
-set incsearch " Highlight dynamically as pattern is typed.
-set shortmess=atI " Don't show the intro message when starting vim.
-" set showtabline=2 " Always show tab bar.
-"set lcs=tab:›\ ,trail:·,eol:¬,nbsp:_
-set lcs=tab:›\ ,trail:·,nbsp:_
-set fcs=fold:-
+if has("cmdline_info")
+    " Show the cursor line and column number
+    set ruler
+    " Show partial commands in status line
+    set showcmd
+    " Show whether in insert or replace mode
+    set showmode
+endif
 
-" keyboard shortcuts
-let mapleader = ','
+if has('statusline')
+    " Always show status line
+    set laststatus=2
+    " Broken down into easily includeable segments
+    " Filename
+    set statusline=%<%f\
+    " Options
+    set statusline+=%w%h%m%r
+    " Current dir
+    set statusline+=\ [%{getcwd()}]
+    " Right aligned file nav info
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+endif
 
-nnoremap <leader>y :let g:ycm_auto_trigger=0<CR> " turn off YCM
-nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR> " turn on YCM
+if has("wildmenu")
+    " Show a list of possible completions
+    set wildmenu
+    " Tab autocomplete longest possible part of a string, then list
+    set wildmode=longest,list,full
+    if has ("wildignore")
+        set wildignore+=*.a,*.pyc,*.o,*.orig
+        set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png
+        set wildignore+=.DS_Store,.git,.hg,.svn
+        set wildignore+=*~,*.sw?,*.tmp
+        set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+    endif
+endif
+
+if has("extra_search")
+    " Highlight searches [use :noh to clear]
+    set hlsearch
+    " Highlight dynamically as pattern is typed
+    set incsearch
+    " Ignore case of searches...
+    set ignorecase
+    " ...unless has mixed case
+    set smartcase
+endif
+
+" Show hidden files when using ctrlp
+let g:ctrlp_show_hidden = 1
+
+" Change mapleader
+let mapleader=","
 
 " Remap :W to :w
 command W w
@@ -78,6 +119,97 @@ imap << ←
 imap ^^ ↑
 imap VV ↓
 imap aa λ
+
+set autoindent
+
+" reload files when changed on disk, i.e. via `git checkout`
+set autoread                                      
+" Fix broken backspace in some setups           
+set backspace=2                                              
+
+" Backspace through everything in INSERT mode
+set backspace=indent,eol,start
+" Optimize for fast terminal connections
+set ttyfast
+" Use UTF-8 without BOM
+set encoding=utf-8 nobomb
+
+" No line wrapping
+set nowrap
+" Use 2 spaces for indentation
+set shiftwidth=2
+" Use 2 spaces for soft tab
+set softtabstop=2
+" Use 2 spaces for tab
+set tabstop=8
+" Expand tab to spaces
+set expandtab
+" Enable line numbers
+set number
+" Highlight current line
+set cursorline
+" Start scrolling three lines before the horizontal window border
+set scrolloff=3
+" Don’t reset cursor to start of line when moving around.
+set nostartofline
+
+" Show 'invisible' characters
+set list
+" Set characters used to indicate 'invisible' characters
+set listchars=tab:▸\
+"set listchars+=trail:▫
+set listchars+=trail:·
+set listchars+=nbsp:_
+"set listchars+=eol:¬
+set fcs=fold:-
+
+" Centralize backups, swapfiles and undo history
+" set backupdir=$HOME/.vim/backups
+" set directory=$HOME/.vim/swaps
+" if exists("&undodir")
+    " set undodir=$HOME/.vim/undo
+" endif
+" set viminfo+=n$HOME/.vim/.viminfo
+
+set backupcopy=yes
+
+" turn off YCM
+nnoremap <leader>y :let g:ycm_auto_trigger=0<CR>
+" turn on YCM
+nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>
+
+" yank and paste with the system clipboard
+set clipboard=unnamed
+
+" don't store swapfiles in the current directory
+set directory-=.                                             
+
+" Strip trailing whitespace (,$)
+noremap <leader>$ :call StripTrailingWhitespace()<CR>
+
+" Faster viewport scrolling (3 lines at a time)
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+vnoremap <C-e> 3<C-e>
+vnoremap <C-y> 3<C-y>
+
+
+
+" Make `Y` work from the cursor to the end of line (which is more logical)
+nnoremap Y y$
+
+" Column to show folds
+set foldcolumn=4
+set foldenable
+set foldlevel=2
+" Sets `foldlevel` when editing a new buffer
+" set foldlevelstart=2
+" Markers are used to specify folds.
+set foldmethod=syntax 
+" Allow folding single lines
+set foldminlines=0
+" Set max fold nesting level
+set foldnestmax=3
 
 " Indent/unident block (,]) (,[)
 "nnoremap <leader>] >i{<CR>
@@ -180,7 +312,7 @@ let g:gitgutter_enabled = 1
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
-  endif
+endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_theme='bubblegum'
 let g:airline#extensions#branch#enabled = 1
@@ -208,21 +340,6 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" fdoc is yaml
-autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-" md is markdown
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.md set spell
-" extra rails.vim help
-autocmd User Rails silent! Rnavcommand decorator      app/decorators            -glob=**/* -suffix=_decorator.rb
-autocmd User Rails silent! Rnavcommand observer       app/observers             -glob=**/* -suffix=_observer.rb
-autocmd User Rails silent! Rnavcommand feature        features                  -glob=**/* -suffix=.feature
-autocmd User Rails silent! Rnavcommand job            app/jobs                  -glob=**/* -suffix=_job.rb
-autocmd User Rails silent! Rnavcommand mediator       app/mediators             -glob=**/* -suffix=_mediator.rb
-autocmd User Rails silent! Rnavcommand stepdefinition features/step_definitions -glob=**/* -suffix=_steps.rb
-" automatically rebalance windows on vim resize
-autocmd VimResized * :wincmd =
-
 " Fix Cursor in TMUX
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -232,16 +349,7 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-" Go crazy!
-if filereadable(expand("~/.vimrc.local"))
-  " In your .vimrc.local, you might like:
-  "
-  " set autowrite
-  " set nocursorline
-  " set nowritebackup
-  " set whichwrap+=<,>,h,l,[,] " Wrap arrow keys between lines
-  "
-  " autocmd! bufwritepost .vimrc source ~/.vimrc
-  " noremap! jj <ESC>
-  source ~/.vimrc.local
+" Load local machine settings if they exist
+if filereadable(glob("$HOME/.vimrc.local"))
+    source $HOME/.vimrc.local
 endif
