@@ -14,7 +14,10 @@ dots=('.aliases'
       '.vim'
       '.vimrc'
       '.vimrc.bundles'
-      '.zshrc'
+      'zpreztorc'
+      'zprofile'
+      'zshenv'
+      'zshrc'
       );
 
 copies=('.extra'
