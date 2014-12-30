@@ -1,31 +1,26 @@
 #
-# A theme based on Steve Losh's Extravagant Prompt with vcs_info integration.
+# A theme based on steeef theme
+#  * Remote Git branch on the right
+#  * Local Git branch info on the left
+#  * Dual line prompt
 #
 # Authors:
 #   Steve Losh <steve@stevelosh.com>
 #   Bart Trojanowski <bart@jukie.net>
 #   Brian Carper <brian@carper.ca>
-#   glnster <glnster@gmail.com>
+#   steeef <steeef@gmail.com>
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-# Screenshots:
-#   http://i.imgur.com/HyRvv.png
-#
+#   Yan Pritzker <yan@pritzker.ws>
+#   Glenn Cueto <glenncueto@gmail.com>
 
 function prompt_glnster_precmd {
-  # Check for untracked files or updated submodules since vcs_info does not.
-  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-    branch_format="(${_prompt_glnster_colors[1]}%b%f%u%c${_prompt_glnster_colors[4]}✗%f)"
-  else
-    branch_format="(${_prompt_glnster_colors[1]}%b%f%u%c)"
-  fi
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
 
-  zstyle ':vcs_info:*:prompt:*' formats "${branch_format}"
-
-  vcs_info 'prompt'
-
-  if (( $+functions[python-info] )); then
-    python-info
+  # Get Git repository information.
+  if (( $+functions[git-info] )); then
+    git-info on
+    git-info
   fi
 }
 
@@ -34,24 +29,21 @@ function prompt_glnster_setup {
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent subst)
 
-  # Load required functions.
   autoload -Uz add-zsh-hook
-  autoload -Uz vcs_info
 
-  # Add hook for calling vcs_info before each command.
   add-zsh-hook precmd prompt_glnster_precmd
 
   # Use extended color pallete if available.
   if [[ $TERM = *256color* || $TERM = *rxvt* ]]; then
-    _prompt_glnster_colors=(
-      "%F{81}"  # Turquoise
-      "%F{166}" # Orange
-      "%F{135}" # Purple
-      "%F{161}" # Hotpink
-      "%F{118}" # Limegreen
+    __PROMPT_glnster_COLORS=(
+      "%F{81}"  # turquoise
+      "%F{166}" # orange
+      "%F{135}" # purple
+      "%F{161}" # hotpink
+      "%F{118}" # limegreen
     )
   else
-    _prompt_glnster_colors=(
+    __PROMPT_glnster_COLORS=(
       "%F{cyan}"
       "%F{yellow}"
       "%F{magenta}"
@@ -60,35 +52,28 @@ function prompt_glnster_setup {
     )
   fi
 
-  # Formats:
-  #   %b - branchname
-  #   %u - unstagedstr (see below)
-  #   %c - stagedstr (see below)
-  #   %a - action (e.g. rebase-i)
-  #   %R - repository path
-  #   %S - path in the repository
-  local branch_format="(${_prompt_glnster_colors[1]}%b%f%u%c)"
-  local action_format="(${_prompt_glnster_colors[5]}%a%f)"
-  local unstaged_format="${_prompt_glnster_colors[2]}-%f"
-  local staged_format="${_prompt_glnster_colors[5]}+%f"
+  # git
+  zstyle ':prezto:module:git:info' verbose 'yes'
+  zstyle ':prezto:module:git:info:branch' format "${__PROMPT_glnster_COLORS[1]}%b%f"
+  zstyle ':prezto:module:git:info:added' format "${__PROMPT_glnster_COLORS[5]}+%f"
+  zstyle ':prezto:module:git:info:deleted' format "${__PROMPT_glnster_COLORS[2]}×%f"
+  zstyle ':prezto:module:git:info:modified' format "${__PROMPT_glnster_COLORS[4]}✗%f"
+  zstyle ':prezto:module:git:info:ahead' format "${__PROMPT_glnster_COLORS[2]}↑%f"
+  zstyle ':prezto:module:git:info:behind' format "${__PROMPT_glnster_COLORS[2]}↓%f"
+  zstyle ':prezto:module:git:info:stashed' format "${__PROMPT_glnster_COLORS[2]}✭%f"
+  zstyle ':prezto:module:git:info:unmerged' format "${__PROMPT_glnster_COLORS[2]}═%f"
+  zstyle ':prezto:module:git:info:untracked' format "${__PROMPT_glnster_COLORS[3]}-%f"
+  zstyle ':prezto:module:git:info:remote' format "${__PROMPT_glnster_COLORS[4]}⌁%R%f"
+  zstyle ':prezto:module:git:info:keys' format \
+    'prompt' '(%b%A%B%d%a%m%u)' \
+    'rprompt' '(%R)'
 
-  # Set vcs_info parameters.
-  zstyle ':vcs_info:*' enable bzr git hg svn
-  zstyle ':vcs_info:*:prompt:*' check-for-changes true
-  zstyle ':vcs_info:*:prompt:*' unstagedstr "${unstaged_format}"
-  zstyle ':vcs_info:*:prompt:*' stagedstr "${staged_format}"
-  zstyle ':vcs_info:*:prompt:*' actionformats "${branch_format}${action_format}"
-  zstyle ':vcs_info:*:prompt:*' formats "${branch_format}"
-  zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
+#user: ${__PROMPT_glnster_COLORS[3]}%n%f@
 
-  # Set python-info parameters.
-  zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
-
-  # Define prompts.
   PROMPT="
-${_prompt_glnster_colors[3]}%n%f at ${_prompt_glnster_colors[2]}%m%f in ${_prompt_glnster_colors[5]}%~%f "'${vcs_info_msg_0_}'"
-"'$python_info[virtualenv]'"$ "
-  RPROMPT=''
+${__PROMPT_glnster_COLORS[2]}%m%f ❯ ${__PROMPT_glnster_COLORS[5]}%~%f "'$git_info[prompt]'"
+$ "
 }
+  RPROMPT='$git_info[rprompt]'
 
 prompt_glnster_setup "$@"
