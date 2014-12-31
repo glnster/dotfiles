@@ -92,16 +92,22 @@ function prompt_glnster_setup {
   zstyle ':prezto:module:git:info:untracked' format "${__PROMPT_glnster_COLORS[3]}~%f"
   zstyle ':prezto:module:git:info:remote' format "${__PROMPT_glnster_COLORS[6]}⚡ %R%f"
   zstyle ':prezto:module:git:info:keys' format \
-    'prompt' '(%b%d%a%m%u%A%B%S)' \
+    'prompt' '(%b%m%d%a%u%A%B%S)' \
     'rprompt' '%R'
 
 #user: ${__PROMPT_glnster_COLORS[3]}%n%f
 #localhost: ${__PROMPT_glnster_COLORS[2]}%m%f
 #pwd: %~
 #time: %t
+_lineup=$'\e[1A'
+_linedown=$'\e[1B'
+_moveright=$'\e[2C'
+_moveleft=$'\e[2D'
+_savepos=$'\e[s'
+_restorepos=$'\e[u'
 
-  PROMPT="$prompt_newline${__PROMPT_glnster_COLORS[5]}"'$_prompt_glnster_pwd'"%f "'$git_info[prompt]'"$prompt_newline%# "
-  RPROMPT='$git_info[rprompt]'
+  PROMPT="$prompt_newline${__PROMPT_glnster_COLORS[2]}%D{%L:%M:%S}%f ${__PROMPT_glnster_COLORS[5]}"'$_prompt_glnster_pwd'"%f "'$git_info[prompt]'"${prompt_newline}%# "
+  RPROMPT="%{${_lineup}%}"'$git_info[rprompt]'"%{${_linedown}%}"
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 

@@ -16,6 +16,7 @@ alias .....="cd ../../../.."
 alias rd="rmdir"
 alias rdf="rm -rf"
 alias md='mkdir -p'
+alias mmv="noglob zmv -W"
 
 # File size
 alias fs="stat -f \"%z bytes\""
