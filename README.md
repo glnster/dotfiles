@@ -1,7 +1,7 @@
 dotfiles
 ========
 
-.files, zsh, vim, iTerm
+.files, zsh + Prezto, vim, iTerm
 
 ## Local files
 My local files not in this repo...
