@@ -36,7 +36,8 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'git' \
   'syntax-highlighting' \
-  'fasd' 
+  'fasd' \
+  'helper'
 
 #
 # Editor

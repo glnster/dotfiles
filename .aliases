@@ -8,6 +8,7 @@
 # Navigation
 alias -- -="cd -"
 alias d='dirs -v | head -10'
+alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
