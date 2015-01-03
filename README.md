@@ -54,9 +54,8 @@ Local/customized files not in this repo and that should stay local...
 - ~/.vim.bundles.local
 
 ## TODO
-- make complete install (more automated)
+- make install better, more automated
 - test install from scratch
-- AM/PM for prompt
 
 ## Credits
 **Huge thanks** to the following people for their dotfile/coding inspiration. Their code helped get me going - much of this repo is their work and I only tweaked things to my preferences. And now I have a terminal I get excited working in!
