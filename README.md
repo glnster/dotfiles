@@ -6,6 +6,8 @@ Config .files for zsh + Prezto, a git-info prompt, bash, git, vim, and iTerm.
 ## Install
 Install zsh+Prezto if you like, clone this repo and run setup.sh (which also calls setupgit.sh).
 
+***Please review setup.sh to see what it does. It may overwrite your current configs.***
+
 ### zsh, Prezto, vim
 I haven't gotten around to testing an install from scratch. For now you'd have to install zsh, Prezto and possibly Vim+submodules manually.
 
@@ -15,7 +17,6 @@ E.g. In your ~ directory, do...
 ```% ln -sf dotfiles/shell/zpreztorc .zpreztorc```
 
 ### running setup.sh
-***Please review setup.sh to see what it does. It may overwrite your current configs.***
 
 - It makes symlinks of .files hard-coded in the script
 - Makes backups of any .extra/.gitconfig it may find in $HOME
