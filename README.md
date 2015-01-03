@@ -4,18 +4,18 @@ dotfiles
 Config .files for zsh + Prezto, a git-info prompt, bash, git, vim, and iTerm.
 
 ## Install
-After cloning this repo, install zsh+Prezto if you like, create some symlinks and run setup.sh (which also calls setupgit.sh).
+Install zsh+Prezto if you like, clone this repo and run setup.sh (which also calls setupgit.sh).
 
 ### zsh, Prezto, vim
 I haven't gotten around to testing an install from scratch. For now you'd have to install zsh, Prezto and possibly Vim+submodules manually.
 
-After installing zsh & Prezto, replace the default symlinks it made, with new ones, pointing them instead to the z* files in dotfiles.
+After installing zsh & Prezto, replace the default symlinks it made, with new ones, pointing them instead to the z* files in dotfiles. (setup.sh does this for you).
 
 E.g. In your ~ directory, do...
-```% ln -sf dotfiles/zpreztorc .zpreztorc```
+```% ln -sf dotfiles/shell/zpreztorc .zpreztorc```
 
-### run setup.sh
-*Heads-up*: Please review setup.sh to see what it does. It may overwrite some of your current configs.
+### running setup.sh
+***Please review setup.sh to see what it does. It may overwrite your current configs.***
 
 - It makes symlinks of .files hard-coded in the script
 - Makes backups of any .extra/.gitconfig it may find in $HOME
@@ -46,7 +46,7 @@ E.g. In your ~ directory, do...
 ![glnster Prezto prompt](screenshots/screenshot-2.png)
 
 ## Local files
-Local/customized files not in this repo and that should stay local...
+Local/customized files that should stay local...
 
 - ~/.extra
 - ~/.gitconfig (git author, email, push setting)
@@ -54,8 +54,9 @@ Local/customized files not in this repo and that should stay local...
 - ~/.vim.bundles.local
 
 ## TODO
-- make install better, more automated
+- make complete install (more automated)
 - test install from scratch
+- AM/PM for prompt
 
 ## Credits
 **Huge thanks** to the following people for their dotfile/coding inspiration. Their code helped get me going - much of this repo is their work and I only tweaked things to my preferences. And now I have a terminal I get excited working in!
