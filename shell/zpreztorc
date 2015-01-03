@@ -87,7 +87,7 @@ zstyle ':prezto:module:editor' key-bindings 'vi'
 # Prompt
 #
 autoload promptinit
-fpath=($HOME/dotfiles/zsh-custom/prezto-prompts $fpath)
+fpath=($HOME/dotfiles/shell/prezto-prompts $fpath)
 promptinit
 
 # Set the prompt theme to load.

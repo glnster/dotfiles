@@ -2,25 +2,29 @@
 # rm and create symlinks
 cd $HOME
 
+echo
+echo "» In $PWD making symlinks"
+
 # separated by space/newline, NOT commas
-dots=('.aliases'
-      '.bash_profile'
-      '.bash_prompt'
-      '.bashrc'
-      '.exports'
-      '.functions'
-      #'.gitconfig'  setup as local config file with credentials/settings
-      '.gitignore_global'
-      '.vim'
-      '.vimrc'
-      '.vimrc.bundles'
+shells=('aliases'
+      'bash_profile'
+      'bash_prompt'
+      'bashrc'
+      'exports'
+      'functions'
       'zpreztorc'
       'zprofile'
       'zshenv'
       'zshrc'
       );
+vims=('vimrc'
+      'vimrc.bundles'
+      );
+dots=( ### .gitconfig will copied from local to home
+      '.gitignore_global'
+      );
 
-copies=('.extra'
+locals=('.extra'
         '.gitconfig'
         );
 
@@ -29,27 +33,38 @@ for dot in "${dots[@]}"
 do
   ln -sf dotfiles/$dot $dot
 done
+for shell in "${shells[@]}"
+do
+  ln -sf dotfiles/shell/$shell .$shell
+done
+for vim in "${vims[@]}"
+do
+  ln -sf dotfiles/.vim/$vim .$vim
+done
+# symlink for .vim dir
+ln -sf dotfiles/.vim .vim
 
+echo
 echo "» In $PWD"
 
-# Make backups of copy files
-for copy in "${copies[@]}"
+# Make backups of locals files
+for local in "${locals[@]}"
 do
-  if [ -f $copy ]; then
-    echo "» Saving $copy as ~/dotfiles/copy/$copy.bak"
-    cp $copy dotfiles/copy/$copy.bak
+  if [ -f $local ]; then
+    echo "» Saving $local as ~/dotfiles/local/$local.bak"
+    cp $local dotfiles/local/$local.bak
   fi
 done
 
 echo
 
-# Copy the copy files to ~/. Prompt for overwriting.
-for copy in "${copies[@]}"
+# Copy the locals files to ~/. Prompt for overwriting.
+for local in "${locals[@]}"
 do
-  if [ -f $copy ]; then
-    cp -Ri dotfiles/copy/$copy .
+  if [ -f $local ]; then
+    cp -Ri dotfiles/local/$local .
   else
-    cp dotfiles/copy/$copy .
+    cp dotfiles/local/$local .
   fi
 done
 
