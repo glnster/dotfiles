@@ -1,18 +1,27 @@
 #!/bin/bash
-# rm and create symlinks
+
+reset=$'\e[0m'
+orange=$'\e[38;5;202m'
+white=$'\e[1;37m'
+blue=$'\e[38;5;26m'
+
 cd $HOME
 
 echo
-echo "» In $PWD making symlinks"
+echo "${blue}» In ${white}$PWD ${blue}making symlinks...${reset}"
 
 # separated by space/newline, NOT commas
+dots=( ### .gitconfig will copied from local to home
+      '.gitignore_global'
+      );
 shells=('aliases'
       'bash_profile'
       'bash_prompt'
       'bashrc'
       'exports'
       'functions'
-      'zpreztorc'
+      );
+zshs=('zpreztorc'
       'zprofile'
       'zshenv'
       'zshrc'
@@ -20,10 +29,6 @@ shells=('aliases'
 vims=('vimrc'
       'vimrc.bundles'
       );
-dots=( ### .gitconfig will copied from local to home
-      '.gitignore_global'
-      );
-
 locals=('.extra'
         '.gitconfig'
         );
@@ -31,27 +36,45 @@ locals=('.extra'
 # Make symlinks to dotfiles
 for dot in "${dots[@]}"
 do
-  ln -sf dotfiles/$dot $dot
+  ln -sfv dotfiles/$dot $dot
 done
+
+# Make symlinks to shell files
 for shell in "${shells[@]}"
 do
-  ln -sf dotfiles/shell/$shell .$shell
+  ln -sfv dotfiles/shell/$shell .$shell
 done
+
+# Make symlinks to vim files
 for vim in "${vims[@]}"
 do
-  ln -sf dotfiles/.vim/$vim .$vim
+  ln -sfv dotfiles/.vim/$vim .$vim
 done
+
 # symlink for .vim dir
-ln -sf dotfiles/.vim .vim
+ln -sfv dotfiles/.vim .vim
+
+# Make symlinks to Zsh/Prezto files
+echo
+read -p "${orange}Do you want to symlink Zsh dotfiles? y/n: ${reset}" yn
+case $yn in
+    [Yy]* )
+        for zsh in "${zshs[@]}"
+        do
+          ln -sfv dotfiles/shell/$zsh .$zsh
+        done
+        ;;
+    [Nn]* ) echo "Ok, skipping Zsh symlinking.";;
+esac
 
 echo
-echo "» In $PWD"
+echo "${blue}» In ${white}$PWD${reset}"
 
 # Make backups of locals files
 for local in "${locals[@]}"
 do
   if [ -f $local ]; then
-    echo "» Saving $local as ~/dotfiles/local/$local.bak"
+    echo "${blue}» Saving ${white}~/$local ${blue}as ${white}~/dotfiles/local/$local.bak${reset}"
     cp $local dotfiles/local/$local.bak
   fi
 done

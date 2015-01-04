@@ -23,6 +23,7 @@ alias fs="stat -f \"%z bytes\""
 
 # Jumps
 alias ht="cd /Applications/MAMP/htdocs"
+alias dot="cd ~/dotfiles"
 
 # Search
 alias grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
