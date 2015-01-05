@@ -110,7 +110,7 @@ _savepos=$'\e[s'
 _restorepos=$'\e[u'
 
   PROMPT="$prompt_newline${__PROMPT_glnster_COLORS[8]}❯${__PROMPT_glnster_COLORS[9]}❯${__PROMPT_glnster_COLORS[10]}❯ "
-  PROMPT+="${__PROMPT_glnster_COLORS[2]}%D{%L:%M:%S}%f ${__PROMPT_glnster_COLORS[5]}"'$_prompt_glnster_pwd'"%f "'$git_info[prompt]'"${prompt_newline}%# "
+  PROMPT+="${__PROMPT_glnster_COLORS[2]}%D{%L:%M:%S%p}%f ${__PROMPT_glnster_COLORS[5]}"'$_prompt_glnster_pwd'"%f "'$git_info[prompt]'"${prompt_newline}%# "
   RPROMPT="%{${_lineup}%}"'$git_info[rprompt]'"%{${_linedown}%}"
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
