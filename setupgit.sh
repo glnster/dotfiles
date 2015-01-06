@@ -9,15 +9,15 @@ blue=$'\e[38;5;26m'
 cd $HOME
 
 echo
-echo "${blue}Loading new .gitconfig...${reset}"
+echo "${blue}Loading $PWD/.gitconfig...${reset}"
 git config -l
 echo
-echo "${blue}Loaded .gitconfig above${reset}"
+echo "${blue}Loaded $PWD/.gitconfig above${reset}"
 
 
 # Create .gitconfig.local file based on user input
 echo
-echo "${blue}Customize your .gitconfig...${reset}"
+echo "${blue}Customize your .gitconfig or ctrl+c to end...${reset}"
 getName=true;
 while $getName; do
     echo

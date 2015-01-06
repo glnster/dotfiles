@@ -164,6 +164,3 @@ zstyle ':prezto:module:terminal:tab-title' format '%d'
 
 # Integrate with iTerm2.
 zstyle ':prezto:module:tmux:iterm' integrate 'yes'
-
-# Turn off command autocorrection
-unsetopt CORRECT

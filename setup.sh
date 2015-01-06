@@ -55,17 +55,25 @@ done
 ln -sfv dotfiles/.vim .vim
 
 # Make symlinks to Zsh/Prezto files
-echo
-read -p "${orange}Do you want to symlink Zsh dotfiles? y/n: ${reset}" yn
-case $yn in
-    [Yy]* )
-        for zsh in "${zshs[@]}"
-        do
-          ln -sfv dotfiles/shell/$zsh .$zsh
-        done
+getZsh=true;
+while $getZsh; do
+  echo
+  read -p "${orange}Do you want to symlink Zsh dotfiles? y/n: ${reset}" yn
+  case $yn in
+      [Yy]* )
+          for zsh in "${zshs[@]}"
+          do
+            ln -sfv dotfiles/shell/$zsh .$zsh
+          done
+          getZsh=true;
+          ;;
+      [Nn]* ) 
+        echo "Ok, skipping Zsh symlinking.";
+        getZsh=false;
         ;;
-    [Nn]* ) echo "Ok, skipping Zsh symlinking.";;
-esac
+      * ) echo "Please answer y or n.";;
+  esac
+done
 
 echo
 echo "${blue}» In ${white}$PWD${reset}"
@@ -74,12 +82,19 @@ echo "${blue}» In ${white}$PWD${reset}"
 for local in "${locals[@]}"
 do
   if [ -f $local ]; then
-    echo "${blue}» Saving ${white}~/$local ${blue}as ${white}~/dotfiles/local/$local.bak${reset}"
+    echo "${blue}» Saved your current ${white}~/$local ${blue}to ${white}~/dotfiles/local/$local.bak${reset}"
     cp $local dotfiles/local/$local.bak
   fi
 done
 
-echo
+localsStr="";
+for local in "${locals[@]}"
+do
+  localsStr+="$local "
+done
+
+echo "${blue}» Now to copy templates ${white}$localsStr${blue}to ${white}. ($PWD)${reset}"
+echo "${orange}Is it OK to...${reset}"
 
 # Copy the locals files to ~/. Prompt for overwriting.
 for local in "${locals[@]}"
