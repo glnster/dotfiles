@@ -78,33 +78,51 @@ done
 echo
 echo "${blue}» In ${white}$PWD${reset}"
 
-# Make backups of locals files
+## Process locals files
+
+# Is .gitconfig overwritten with template version?
+gconfOW=false;
+
 for local in "${locals[@]}"
 do
+  # If local file exists in home it could be customized already or not
   if [ -f $local ]; then
+    echo
+    # Make backup of their local file
     echo "${blue}» Saved your current ${white}~/$local ${blue}to ${white}~/dotfiles/local/$local.bak${reset}"
     cp $local dotfiles/local/$local.bak
-  fi
-done
 
-localsStr="";
-for local in "${locals[@]}"
-do
-  localsStr+="$local "
-done
+    echo "${blue}» Now to copy a fresh ${white}$local ${blue}template${reset}"
 
-echo "${blue}» Now to copy templates ${white}$localsStr${blue}to ${white}. ($PWD)${reset}"
-echo "${orange}Is it OK to...${reset}"
+    getOW=true;
+    while $getOW; do
+      read -p "${orange}Overwrite your ${white}$PWD/$local ${blue}? y/n: ${reset}" yn
+      case $yn in
+          [Yy]* )
+              cp -R dotfiles/local/$local .
+              if [ $local = ".gitconfig" ]; then
+                gconfOW=true;
+              fi
+              getOW=false;
+              ;;
+          [Nn]* ) 
+            echo "Ok, skipping.";
+            getOW=false;
+            ;;
+          * ) echo "Please answer y or n.";;
+      esac
+    done
 
-# Copy the locals files to ~/. Prompt for overwriting.
-for local in "${locals[@]}"
-do
-  if [ -f $local ]; then
-    cp -Ri dotfiles/local/$local .
   else
+    # This local file don't already exist (esp .extra) so copy template over
     cp dotfiles/local/$local .
   fi
 done
 
-# Run .gitconfig setup
-./dotfiles/setupgit.sh
+if [ $gconfOW = true ]; then
+  # Run .gitconfig setup
+  ./dotfiles/setupgit.sh
+else
+  echo
+  echo "${blue}» Setup complete.${reset}"
+fi

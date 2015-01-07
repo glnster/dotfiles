@@ -74,3 +74,6 @@ git config --global --replace-all push.default "$gitpush"
 
 echo
 echo "${blue}.gitconfig setup done. Run git config to verify. And you might want to reload your shell too.${reset}"
+
+echo
+echo "${blue}» Setup complete.${reset}"
