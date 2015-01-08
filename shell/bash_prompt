@@ -1,5 +1,4 @@
-# This prompt inspired by gf3, sindresorhus, alrra, and mathiasbynens.
-# but customized to me. <3
+# This prompt inspired by gf3, sindresorhus, alrra, mathiasbynens, and paulirish.
 
 default_username='glenn'
 
@@ -87,11 +86,23 @@ set_prompts() {
         # quickest check for what branch we're on
         branch=`git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'`
 
-        # check if it's dirty (via github.com/sindresorhus/pure)
-        dirty=$(git diff --quiet --ignore-submodules HEAD &>/dev/null; [ $? -eq 1 ]&& echo -e "✗")
+        # Check for unstaged changes.
+        if ! $(git diff-files --quiet --ignore-submodules --); then
+          s+='✗';
+        fi;
+
+        # Check for untracked files.
+        if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+          s+='~';
+        fi;
+
+        # Check for stashed files.
+        if $(git rev-parse --verify refs/stash &>/dev/null); then
+          s+='$';
+        fi;
 
         [ -n "$s" ] && s=" [$s]"
-        printf "%s" "$1$branch$2$dirty"
+        echo -e "${1}${branch} ${blue}${s}";
 
         return
     }
@@ -103,7 +114,7 @@ set_prompts() {
     # ------------------------------------------------------------------
 
     PS1="\[\033]0;\w\007\]"                                 # terminal title (set to the current working directory)
-    PS1+="\[$bold\]"
+    PS1+="\[${bold}\]\n"; # newline
     PS1+="\[$(usernamehost)\]"                              # username at host
     PS1+="\[$green\]\w"                                     # working directory 
     PS1+="\$(prompt_git \" $purple\"\( \")$cyan\")"   # git repository details
