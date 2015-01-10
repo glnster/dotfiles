@@ -184,6 +184,7 @@ alias gwho='git config user.name && git config user.email'
 #alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
 
 # Enable aliases to be sudo’ed
+alias please='sudo'
 alias sudo='sudo '
 
 # Get week number
