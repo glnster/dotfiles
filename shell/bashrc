@@ -1,3 +1,5 @@
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
+
+. ~/.bash_profile
