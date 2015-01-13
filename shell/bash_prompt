@@ -95,7 +95,7 @@ set_prompts() {
         fi;
 
         [ -n "$s" ] && s="$s"
-        echo -e " $(tput sgr0)($(tput setaf 37)${branch}$s$(tput sgr0))";
+        echo -e " $(tput sgr0)(${1}${branch}$s$(tput sgr0))";
 
         return
     }
@@ -110,7 +110,7 @@ set_prompts() {
     PS1+="\[${bold}\]\n"; # newline
     PS1+="\[${reset}\]❯❯❯ \@ \[$(usernamehost)\]"   # username at host
     PS1+="\[$green\]\w\[${reset}\]"   # working directory
-    PS1+="\$(prompt_git)"   # git repository details
+    PS1+="\$(prompt_git \"${cyan}\")"   # git repository details
     PS1+="\n"
     PS1+="\[$white\]\\$ \[$reset\]"
 
