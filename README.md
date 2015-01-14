@@ -57,7 +57,6 @@ Local/customized files that should stay local...
 ## TODO
 - make complete install (more automated)
 - test install from scratch
-- AM/PM for prompt
 
 ## Credits
 **Huge thanks** to the following people for their dotfile/coding inspiration. Their code helped get me going - much of this repo is their work and I only tweaked things to my preferences. And now I have a terminal I get excited working in!
@@ -67,3 +66,4 @@ Local/customized files that should stay local...
 - [https://github.com/cowboy/dotfiles](https://github.com/cowboy/dotfiles)
 - [https://github.com/kevinSuttle/dotfiles](https://github.com/kevinSuttle/dotfiles)
 - [Veraticus / prompt_josh_setup.zsh](https://gist.github.com/Veraticus/1b30a6b6cbe8dae57e9f)
+- [https://github.com/jondavidjohn](https://github.com/jondavidjohn)
