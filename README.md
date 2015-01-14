@@ -1,7 +1,7 @@
 dotfiles
 ========
 
-Config .files for zsh + Prezto, a git-info prompt, bash, git, vim, and iTerm.
+Config files for zsh + Prezto, a git-info prompt, bash, git, vim, and iTerm.
 
 ## Install
 Install zsh+Prezto if you like, clone this repo and run setup.sh (which also calls setupgit.sh).
