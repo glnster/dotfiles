@@ -94,8 +94,20 @@ set_prompts() {
           s+=$(tput setaf 64)"$";
         fi;
 
+        remote_state=$(git status -sb 2> /dev/null | grep -oh "\[.*\]")
+        if [[ "$remote_state" != "" ]]; then
+            r="$(tput setaf 33)"
+            if [[ "$remote_state" == *ahead* ]]; then
+                r+="↑"
+            fi
+            if [[ "$remote_state" == *behind* ]]; then
+                r+="↓"
+            fi
+            r+="${reset}"
+        fi
+
         [ -n "$s" ] && s="$s"
-        echo -e " $(tput sgr0)(${1}${branch}$s$(parse_remote_state)$(tput sgr0))";
+        echo -e " $(tput sgr0)(${1}${branch}$s$r$(tput sgr0))";
 
 
 
@@ -105,18 +117,15 @@ set_prompts() {
     parse_remote_state() {
         remote_state=$(git status -sb 2> /dev/null | grep -oh "\[.*\]")
         if [[ "$remote_state" != "" ]]; then
-            #out="${blue}${reset}"
+            out="$(tput setaf 33)"
 
-            if [[ "$remote_state" == *ahead* ]] && [[ "$remote_state" == *behind* ]]; then
-                behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
-                ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
-                out="$out${red}$behind_num${reset},${green}$ahead_num${reset}"
-            elif [[ "$remote_state" == *ahead* ]]; then
-                ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
-                out="$out${green}$ahead_num${reset}"
-            elif [[ "$remote_state" == *behind* ]]; then
-                behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
-                out="$out${red}$behind_num${reset}"
+            if [[ "$remote_state" == *ahead* ]]; then
+                #ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
+                out+="↑${reset}"
+            fi
+            if [[ "$remote_state" == *behind* ]]; then
+                #behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
+                out+="↓${reset}"
             fi
 
             #out="$out${blue}${reset}"
