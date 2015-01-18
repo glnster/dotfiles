@@ -55,8 +55,9 @@ Local/customized files that should stay local...
 - ~/.vim.bundles.local
 
 ## TODO
-- make complete install (more automated)
 - test install from scratch
+- brew/cask to install zsh, prezto
+- bring in sublime text prefs
 
 ## Credits
 **Huge thanks** to the following people for their dotfile/coding inspiration. Their code helped get me going - much of this repo is their work and I only tweaked things to my preferences. And now I have a terminal I get excited working in!
