@@ -141,7 +141,7 @@ set_prompts() {
 
     PS1="\[\033]0;\w\007\]"  # terminal title (set to the current working directory)
     PS1+="\[${bold}\]\n"; # newline
-    PS1+="\[${reset}\]❯❯❯ \@ \[$(usernamehost)\]"   # username at host
+    PS1+="\[${reset}\]\@ \[$(usernamehost)\]"   # username at host
     PS1+="\[$green\]\w\[${reset}\]"   # working directory
     PS1+="\$(prompt_git \"${cyan}\")"   # git repository details
     PS1+="\n"
