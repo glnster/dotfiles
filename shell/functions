@@ -1,3 +1,11 @@
+# My funcs
+# Start browser-sync on current WP project.
+# You must be in the project's directory.
+bsync() {
+  set -x
+  browser-sync start --proxy ${PWD##*/} --files "content/themes/${PWD##*/}/**/*"
+}
+
 # BY: https://gist.github.com/SlexAxton/4989674
 gifify() {
   if [[ -n "$1" ]]; then
