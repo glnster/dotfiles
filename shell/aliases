@@ -15,7 +15,7 @@ alias .....="cd ../../../.."
 # File Manipulation
 alias rd="rmdir"
 alias rdf="rm -rf"
-alias md='mkdir -p'
+alias md='echo "use mkd to mkdir and cd into it"'
 alias mmv="noglob zmv -W"
 
 # File size
