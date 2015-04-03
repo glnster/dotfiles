@@ -4,7 +4,7 @@
 
 
 
-# ------------ FILE SYS ------------- 
+# ------------ FILE SYS -------------
 # Navigation
 alias -- -="cd -"
 alias d='dirs -v | head -10'
@@ -17,6 +17,7 @@ alias rd="rmdir"
 alias rdf="rm -rf"
 alias md='echo "use mkd to mkdir and cd into it"'
 alias mmv="noglob zmv -W"
+alias t="trash"
 
 # File size
 alias fs="stat -f \"%z bytes\""
@@ -69,7 +70,7 @@ alias map="xargs -n1"
 
 
 
-# ------------ APPLICATIONS ------------- 
+# ------------ APPLICATIONS -------------
 # Shortcuts
 # vim & sublime - see .functions
 
