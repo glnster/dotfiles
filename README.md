@@ -60,7 +60,7 @@ Local/customized files that should stay local...
 - bring in sublime text prefs
 
 ## Credits
-**Huge thanks** to the following people for their dotfile/coding inspiration. Their code helped get me going - much of this repo is their work and I only tweaked things to my preferences. And now I have a terminal I get excited working in!
+**Huge thanks** to the following people for their dotfile/coding inspiration.
 
 - [https://github.com/mathiasbynens](https://github.com/mathiasbynens)
 - [https://github.com/paulirish/dotfiles](https://github.com/paulirish/dotfiles)
