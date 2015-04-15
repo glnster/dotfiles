@@ -6,8 +6,26 @@ bsync() {
   browser-sync start --proxy ${PWD##*/} --files "content/themes/${PWD##*/}/**/*"
 }
 
+# By me, based on https://gist.github.com/SlexAxton/4989674
+# but using https://github.com/vvo/gifify
+gif() {
+  if [[ -n "$1" ]]; then
+    if [[ $2 == '--good' ]]; then
+      # better than default but larger filesize
+      gifify $1 -o $1.gif --colors 256 --resize 600:-1 --compress 30
+    else
+      # defaults: 10fps, 80 colors, 40 compression (0=no compression. 100=full),
+      gifify $1 -o $1.gif
+    fi
+  else
+    echo "Gifify a .mov/.whatev to .gif"
+    echo "usage: gif <input_movie.mov>"
+    echo "The similar fn, gififyfn, uses ffmpeg directly."
+  fi
+}
+
 # BY: https://gist.github.com/SlexAxton/4989674
-gifify() {
+gififyfn() {
   if [[ -n "$1" ]]; then
     if [[ $2 == '--good' ]]; then
       ffmpeg -i $1 -r 10 -vcodec png out-static-%05d.png
@@ -17,7 +35,7 @@ gifify() {
       ffmpeg -i $1 -s 600x400 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > $1.gif
         fi
   else
-    echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
+    echo "proper usage: gififyfn <input_movie.mov>. You DO need to include extension."
       fi
 }
 
