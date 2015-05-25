@@ -24,3 +24,6 @@ unsetopt CORRECT
 
 # Load z
 . /usr/local/etc/profile.d/z.sh
+
+# Unalias g=git created by zprezto's git module
+unalias g
