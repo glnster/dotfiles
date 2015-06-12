@@ -95,6 +95,7 @@ alias gcd='git checkout develop'
 alias gch='git checkout hotfix'
 alias gcm='git checkout master'
 alias gcr='git checkout release'
+alias gcob='git checkout -b'
 
 alias gcon='git config --list'
 alias gcount='git shortlog -sn'
