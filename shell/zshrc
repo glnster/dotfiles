@@ -27,3 +27,5 @@ unsetopt CORRECT
 
 # Unalias g=git created by zprezto's git module
 unalias g
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
