@@ -9,7 +9,7 @@ Install zsh+Prezto if you like, clone this repo and run setup.sh (which also cal
 ***Please review setup.sh to see what it does. It may overwrite your current configs.***
 
 ### zsh, Prezto, vim
-I haven't gotten around to testing an install from scratch. For now you'd have to install zsh, Prezto and possibly Vim+submodules manually.
+I haven't gotten around to testing an install from scratch. For now you'd have to install zsh, Prezto, possibly Vim+submodules, t (trash), etc. manually.
 
 After installing zsh & Prezto, replace the default symlinks it made, with new ones, pointing them instead to the z* files in dotfiles. (setup.sh does this for you).
 
@@ -47,7 +47,7 @@ E.g. In your ~ directory, do...
 ![glnster Prezto prompt](screenshots/screenshot-2.png)
 
 ## Local files
-Local/customized files that should stay local...
+Local/customized files that should stay local/private...
 
 - ~/.extra
 - ~/.gitconfig (git author, email, push setting)
@@ -56,7 +56,7 @@ Local/customized files that should stay local...
 
 ## TODO
 - test install from scratch
-- brew/cask to install zsh, prezto
+- brew/cask to install zsh, prezto, apps
 - bring in sublime text prefs
 
 ## Credits

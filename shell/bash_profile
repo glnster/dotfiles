@@ -5,7 +5,8 @@ export RUBYOPT=rubygems
 # export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# This loads RVM into a shell session.
 
 # FOLLOWING BY: https://github.com/mathiasbynens
 # Add `~/bin` to the `$PATH`
