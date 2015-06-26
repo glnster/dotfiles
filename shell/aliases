@@ -91,6 +91,7 @@ alias gcmsg='git commit -m'
 alias gcs='git commit -S'
 
 alias gco='git checkout'
+alias gco-='git checkout -'
 alias gcd='git checkout develop'
 alias gch='git checkout hotfix'
 alias gcm='git checkout master'
