@@ -4,7 +4,7 @@ dotfiles
 Config files for zsh + Prezto, a git-info prompt, bash, git, vim, and iTerm.
 
 ## Install
-Install zsh+Prezto if you like, clone this repo and run setup.sh (which also calls setupgit.sh).
+Install zsh+Prezto, clone this repo and run setup.sh (which also calls setupgit.sh).
 
 ***Please review setup.sh to see what it does. It may overwrite your current configs.***
 
@@ -35,6 +35,15 @@ To install...
 - loads the .gitconfig template
 - prompts for your full Git name, email, and push default
 - does a ```git config --global --replace-all``` using your input, which updates your new, local .gitconfig
+
+## Featured commands
+Just some commands I'd like to highlight:
+- `al` - list aliases colorized
+- `alg` - list 'git' aliases colorized
+- `pyg $1` - like `cat`, print file to screen syntax-highlighted & line-numbered
+- `t $1` - like `rm`, but moves files to trash
+- `gco-` - quickly git-checkout toggle between 2 branches
+- `-` - quickly cd toggle between 2 paths
 
 ## glnster Prezto prompt
 #### A theme based on steeef theme that features:
