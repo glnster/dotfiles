@@ -16,6 +16,14 @@ After installing zsh & Prezto, replace the default symlinks it made, with new on
 E.g. In your ~ directory, do...
 ```% ln -sf dotfiles/shell/zpreztorc .zpreztorc```
 
+### other apps
+- t - Cross-platform command-line app for moving files and directories to the trash - A safer alternative to `rm` https://github.com/sindresorhus/trash
+- pygmentize - syntax highlighter I use to colorize `cat`, `alias`. http://pygments.org/.
+To install...
+	```% easy_install Pygments```
+
+- gvm, nvm, jenv, rvm
+
 ### running setup.sh
 
 - It makes symlinks of .files hard-coded in the script
