@@ -24,6 +24,17 @@ gif() {
   fi
 }
 
+#Pygmentize with line nums
+al() {
+  alias | pygmentize -l bash -f terminal256 | perl -e 'print ++$i."  $_" for <>'
+}
+alg() {
+  alias | grep 'git' | pygmentize -l bash -f terminal256 | perl -e 'print ++$i."  $_" for <>'
+}
+pyg() {
+  pygmentize -g $1 | perl -e 'print ++$i."  $_" for <>'
+}
+
 # BY: https://gist.github.com/SlexAxton/4989674
 gififyfn() {
   if [[ -n "$1" ]]; then
