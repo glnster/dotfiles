@@ -30,6 +30,5 @@ unalias g
 # Unalias git force push
 unalias gpf
 
-# Add RVM to PATH for scripting
-# export PATH="/usr/local/git/bin/git:$PATH:$HOME/.rvm/bin"
+# git version
 export PATH="/usr/local/git/bin/git:$PATH"
