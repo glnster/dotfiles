@@ -145,6 +145,7 @@ alias gpoat='git push origin --all && git push origin --tags'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
+alias grbm='git rebase master'
 
 alias grh='git reset HEAD'
 alias grclean='git reset --hard && git clean -dfx'
@@ -158,7 +159,10 @@ alias grrm='git remote remove'
 alias grset='git remote set-url'
 alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
 alias grup='git remote update'
-alias grv='git remote -v'
+
+alias grv='git review'
+alias grvu='git review update'
+alias grvd='git review dcommit'
 
 alias gsps='git show --pretty=short --show-signature'
 alias gsd='git svn dcommit'
@@ -174,6 +178,8 @@ alias gsts='git stash show --text'
 
 alias gsa='git submodule add'
 alias gsubup='git submodule update --init --recursive'
+
+alias gt="echo 'git branch <branch-name> -u origin/master'"
 
 alias gts='git tag -s'
 alias gunignore='git update-index --no-assume-unchanged'
