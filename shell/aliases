@@ -146,6 +146,7 @@ alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grbm='git rebase master'
+alias grbim='git rebase -i master'
 
 alias grh='git reset HEAD'
 alias grclean='git reset --hard && git clean -dfx'
