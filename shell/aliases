@@ -81,6 +81,7 @@ alias map="xargs -n1"
 alias ga='git add'
 alias gaa='git add -A'
 alias gap='git add --patch'
+alias gaac='git add -A && git commit -m'
 
 alias gb='git branch'
 alias gba='git branch -a'

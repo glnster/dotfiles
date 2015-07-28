@@ -6,4 +6,5 @@
 > grvd (git review dcommit)
 > gcm
 > git merge <branch>
-> git push origin master
+> git submit
+    (or git push origin master)
