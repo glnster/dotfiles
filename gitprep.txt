@@ -1,0 +1,9 @@
+> gcm
+> gpl
+> gco <branch>
+> grbim (git rebase -i master)
+    reword first line, fix rest
+> grvd (git review dcommit)
+> gcm
+> git merge <branch>
+> git push origin master

@@ -121,6 +121,8 @@ alias gplo='git pull origin $(current_branch)'
 alias gplr='git pull --rebase'
 alias gplro='git pull --rebase origin $(current_branch)'
 
+alias gprep='less ~/dotfiles/gitprep.txt'
+
 alias gignore='git update-index --assume-unchanged'
 alias gignored='git ls-files -v | grep "^[[:lower:]]"'
 alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
