@@ -29,6 +29,14 @@ unsetopt CORRECT
 unalias g
 # Unalias git force push
 unalias gpf
+unalias grc
+unalias gri
+unalias grs
+unalias gs
+unalias gsl
+unalias gsp
+unalias gsw
+unalias gsx
 
 # git version
 export PATH="/usr/local/git/bin/git:$PATH"
