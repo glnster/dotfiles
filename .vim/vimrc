@@ -47,9 +47,26 @@ if has("syntax")
     " Set 256 color terminal support
     set t_Co=256
     " Set dark background
-    set background=dark
+    "set background=dark
     " Set colorscheme
-    silent! colorscheme sourcerer
+    "silent! colorscheme sourcerer
+endif
+
+" gui settings
+if (&t_Co == 256 || has('gui_running'))
+  if ($TERM_PROGRAM == 'iTerm.app')
+    "set background=dark
+    let g:solarized_termtrans=1
+    let g:solarized_termcolors=256
+    let g:solarized_contrast="low"
+    let g:solarized_visibility="high"
+    colorscheme sweater
+    "colorscheme jellybeans
+    "colorscheme solarized
+    "colorscheme sourcerer
+  else
+    colorscheme sourcerer
+  endif
 endif
 
 if has("cmdline_info")
