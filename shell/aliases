@@ -187,7 +187,7 @@ alias gstas='git stash show --text'
 alias gsa='git submodule add'
 alias gsubup='git submodule update --init --recursive'
 
-alias gt="echo 'git branch <branch-name> -u origin/master'"
+alias gtm='git branch $(current_branch) -u origin/master'
 
 alias gts='git tag -s'
 alias gunignore='git update-index --no-assume-unchanged'
