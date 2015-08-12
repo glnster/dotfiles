@@ -2,7 +2,7 @@
 > gpl
 > gco <branch>
 > grbim (git rebase -i master)
-    reword first line, fix rest
+    %s/^pick/f/g
 > grvd (git review dcommit)
 > gcm
 > git merge <branch>
