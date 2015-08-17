@@ -17,12 +17,13 @@ E.g. In your ~ directory, do...
 ```% ln -sf dotfiles/shell/zpreztorc .zpreztorc```
 
 ### other apps
-- t - Cross-platform command-line app for moving files and directories to the trash - A safer alternative to `rm` https://github.com/sindresorhus/trash
-- pygmentize - syntax highlighter I use to colorize `cat`, `alias`. http://pygments.org/.
+- [t](https://github.com/sindresorhus/trash) - Cross-platform command-line app for moving files and directories to the trash - A safer alternative to `rm`
+- [pygmentize](http://pygments.org/) - syntax highlighter I use to colorize `cat`, `alias`.
 To install...
 	```% easy_install Pygments```
 
 - gvm, nvm, jenv, rvm
+- [lorem](https://github.com/per9000/lorem) - CLI lorem ipsum where you can specify char counts, etc.
 
 ### running setup.sh
 
