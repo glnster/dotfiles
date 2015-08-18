@@ -83,7 +83,7 @@ alias gaa='git add -A'
 alias gap='git add --patch'
 alias gaac='git add -A && git commit -m'
 
-alias gb='git branch'
+alias gb='for k in `git branch|perl -pe "s/^..//"`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort'
 alias gba='git branch -a'
 alias gbr='git branch --remote'
 
