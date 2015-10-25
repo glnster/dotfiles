@@ -1,16 +1,76 @@
 " .vimrc
 
+" Leader
+let mapleader = " "
+
 inoremap jk <ESC>
 
-" !silent is used to suppress error messages if the config line
-" references plugins/colorschemes that might be missing
+" ================== general ====================
 
-" Disable Vi compatibility
-set nocompatible
+set backspace=2   " Backspace deletes like most programs in insert mode
+set backspace=indent,eol,start   " Backspace through everything in INSERT mode
+set nobackup
+set nowritebackup
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set history=50
+set nocompatible   " Disable Vi compatibility
+set shortmess=atI   " Don't show the intro message when starting vim
+set autoindent
+set autoread      " reload files when changed on disk, i.e. via `git checkout`
+set ttyfast   " Optimize for fast terminal connections
+set encoding=utf-8 nobomb   " Use UTF-8 without BOM
+set shiftwidth=2   " Use 2 spaces for indentation
+set softtabstop=2   " Use 2 spaces for soft tab
+set tabstop=2   " Use 2 spaces for tab
+set expandtab   " Expand tab to spaces
+set number   " Enable line numbers
+set cursorline   " Highlight current line
+set scrolloff=3   " Start scrolling three lines before the horizontal window border
+set nostartofline   " Don’t reset cursor to start of line when moving around.
+set clipboard=unnamed   " yank and paste with the system clipboard
+set directory-=.   " don't store swapfiles in the current directory
+set list listchars=tab:»·,trail:·,nbsp:·   " Display extra whitespace
+set fcs=fold:-
+set textwidth=80   " text wrap
+set colorcolumn=+1   " Make it obvious where 80 characters is
 
-" Don't show the intro message when starting vim.
-set shortmess=atI
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
 
+
+" Always use vertical diffs
+set diffopt+=vertical
+
+
+
+" Centralize backups, swapfiles and undo history
+" set backupdir=$HOME/.vim/backups
+" set directory=$HOME/.vim/swaps
+" if exists("&undodir")
+    " set undodir=$HOME/.vim/undo
+" endif
+" set viminfo+=n$HOME/.vim/.viminfo
+"set backupcopy=yes
+
+" Column to show folds
+set foldcolumn=4
+set foldenable
+set foldlevel=2
+" Sets `foldlevel` when editing a new buffer
+" set foldlevelstart=2
+" Markers are used to specify folds.
+set foldmethod=syntax
+" Allow folding single lines
+set foldminlines=0
+" Set max fold nesting level
+set foldnestmax=3
+
+
+
+" ================== plugins ====================
+
+" !silent is used to suppress error messages if the config line references plugins/colorschemes that might be missing
 " Point to location of pathogen submodule (since it's not in .vim/autoload)
 silent! runtime bundle/vim-pathogen/autoload/pathogen.vim
 
@@ -119,214 +179,34 @@ if has("extra_search")
     set smartcase
 endif
 
+" Use The Silver Searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" Fix Cursor in TMUX
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+
 " Show hidden files when using ctrlp
 let g:ctrlp_show_hidden = 1
 
-" Change mapleader
-let mapleader=","
-
-" Remap :W to :w
-command W w
-command Wq wq
-
-" Better mark jumping (line + col)
-nnoremap ' `
-
-" Hard to type things
-imap >> →
-imap << ←
-imap ^^ ↑
-imap VV ↓
-imap aa λ
-
-set autoindent
-
-" reload files when changed on disk, i.e. via `git checkout`
-set autoread
-" Fix broken backspace in some setups
-set backspace=2
-
-" Backspace through everything in INSERT mode
-set backspace=indent,eol,start
-" Optimize for fast terminal connections
-set ttyfast
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
-
-" No line wrapping
-set nowrap
-" Use 2 spaces for indentation
-set shiftwidth=2
-" Use 2 spaces for soft tab
-set softtabstop=2
-" Use 2 spaces for tab
-set tabstop=8
-" Expand tab to spaces
-set expandtab
-" Enable line numbers
-set number
-" Highlight current line
-set cursorline
-" Start scrolling three lines before the horizontal window border
-set scrolloff=3
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-
-" Show 'invisible' characters
-set list
-" Set characters used to indicate 'invisible' characters
-set listchars=tab:▸\
-"set listchars+=trail:▫
-set listchars+=trail:·
-set listchars+=nbsp:_
-"set listchars+=eol:¬
-set fcs=fold:-
-
-" Centralize backups, swapfiles and undo history
-" set backupdir=$HOME/.vim/backups
-" set directory=$HOME/.vim/swaps
-" if exists("&undodir")
-    " set undodir=$HOME/.vim/undo
-" endif
-" set viminfo+=n$HOME/.vim/.viminfo
-
-set backupcopy=yes
-
-" turn off YCM
-nnoremap <leader>y :let g:ycm_auto_trigger=0<CR>
-" turn on YCM
-nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>
-
-" yank and paste with the system clipboard
-set clipboard=unnamed
-
-" don't store swapfiles in the current directory
-set directory-=.
-
-" Strip trailing whitespace (,$)
-noremap <leader>$ :call StripTrailingWhitespace()<CR>
-
-" Faster viewport scrolling (3 lines at a time)
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-vnoremap <C-e> 3<C-e>
-vnoremap <C-y> 3<C-y>
-
-
-
-" Make `Y` work from the cursor to the end of line (which is more logical)
-nnoremap Y y$
-
-" Column to show folds
-set foldcolumn=4
-set foldenable
-set foldlevel=2
-" Sets `foldlevel` when editing a new buffer
-" set foldlevelstart=2
-" Markers are used to specify folds.
-set foldmethod=syntax
-" Allow folding single lines
-set foldminlines=0
-" Set max fold nesting level
-set foldnestmax=3
-
-" Indent/unident block (,]) (,[)
-"nnoremap <leader>] >i{<CR>
-"nnoremap <leader>[ <i{<CR>
-
-" Paste toggle (,p)
-set pastetoggle=<leader>p
-map <leader>p :set invpaste paste?<CR>
-
-" Buffer navigation (,,) (,]) (,[) (,ls)
-map <Leader>, <C-^>
-map <Leader>- :bn<CR>
-map <Leader>= :bp<CR>
-map <Leader>ls :buffers<CR>
-
-" Close Quickfix window (,qq)
-map <leader>qq :cclose<CR>
-
-" Yank from cursor to end of line
-nnoremap Y y$
-
-" Insert newline
-map <leader><Enter> o<ESC>
-
-" Search and replace word under cursor (,*)
-nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
-
-" Join lines and restore cursor location (J)
-nnoremap J mjJ`j
-
-" Toggle folds (<Space>)
-nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<CR>
-
-" Enable basic mouse behavior such as resizing buffers.
-set mouse=a
-if exists('$TMUX')  " Support resizing in tmux
-  set ttymouse=xterm2
-endif
-
-" File Tabs
-"nnoremap <C-Tab> :tabprev<CR>
-"nnoremap <C-S-Tab> :tabnext<CR>
-noremap ,th :tabprev<CR>
-nnoremap ,tl :tabnext<CR>
-nnoremap ,tn :tabnew<CR>
-nnoremap ,tw :tabclose<CR>
-
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-"noremap <leader>l :Align
-nnoremap <leader>a :Ag<space>
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>nt :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-nnoremap <leader>\ :TagbarToggle<CR>
-nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
-nnoremap <leader>g :GitGutterToggle<CR>
-nnoremap <leader>c <Plug>Kwbd
-noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-"speed up viewport scrolling
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
-" Faster split resizing (+,-)
-if bufwinnr(1)
-  map + <C-W>+
-  map - <C-W>-
-endif
-
-" Sudo write (,W)
-noremap <leader>W :w !sudo tee %<CR>
-
-
-
-" node.vim commands
-autocmd User Node
-  \ if &filetype == "javascript" |
-  \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
-  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
-  \ endif
-
-" in case you forgot to sudo
-cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
 let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
 let g:gitgutter_enabled = 1
+
 
 " airline settings
 let g:airline_powerline_fonts = 1
@@ -351,23 +231,158 @@ let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
 let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" ================== remaps ====================
+
+" Remap :W to :w
+command W w
+command Wq wq
+
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+
+" Better mark jumping (line + col)
+nnoremap ' `
+
+
+" Hard to type things
+imap >> →
+imap << ←
+imap ^^ ↑
+imap VV ↓
+imap aa λ
+
+
+" turn off YCM
+nnoremap <leader>y :let g:ycm_auto_trigger=0<CR>
+" turn on YCM
+nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>
+
+
+" Strip trailing whitespace (,$)
+noremap <leader>$ :call StripTrailingWhitespace()<CR>
+
+
+" Faster viewport scrolling (3 lines at a time)
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+vnoremap <C-e> 3<C-e>
+vnoremap <C-y> 3<C-y>
+
+
+" Make `Y` work from the cursor to the end of line (which is more logical)
+nnoremap Y y$
+
+
+" Indent/unident block (,]) (,[)
+"nnoremap <leader>] >i{<CR>
+"nnoremap <leader>[ <i{<CR>
+
+
+" Paste toggle (,p)
+set pastetoggle=<leader>p
+map <leader>p :set invpaste paste?<CR>
+
+
+" Buffer navigation (,,) (,]) (,[) (,ls)
+map <Leader>, <C-^>
+map <Leader>- :bn<CR>
+map <Leader>= :bp<CR>
+map <Leader>ls :buffers<CR>
+
+
+" Close Quickfix window (,qq)
+map <leader>qq :cclose<CR>
+
+
+" Yank from cursor to end of line
+nnoremap Y y$
+
+
+" Insert newline
+map <leader><Enter> o<ESC>
+
+
+" Search and replace word under cursor (,*)
+nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+
+
+" Join lines and restore cursor location (J)
+nnoremap J mjJ`j
+
+
+" Toggle folds (<Space>)
+nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<CR>
+
+
+" Enable basic mouse behavior such as resizing buffers.
+set mouse=a
+if exists('$TMUX')  " Support resizing in tmux
+  set ttymouse=xterm2
 endif
 
-" Fix Cursor in TMUX
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" File Tabs
+"nnoremap <C-Tab> :tabprev<CR>
+"nnoremap <C-S-Tab> :tabnext<CR>
+noremap <leader>th :tabprev<CR>
+nnoremap <leader>tl :tabnext<CR>
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>tw :tabclose<CR>
+
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+"noremap <leader>l :Align
+nnoremap <leader>a :Ag<space>
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+nnoremap <leader>t :CtrlP<CR>
+nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+nnoremap <leader>\ :TagbarToggle<CR>
+nnoremap <leader>. :call whitespace#strip_trailing()<CR>
+nnoremap <leader>g :GitGutterToggle<CR>
+nnoremap <leader>c <Plug>Kwbd
+noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+
+"speed up viewport scrolling
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+
+" Faster split resizing (+,-)
+if bufwinnr(1)
+  map + <C-W>+
+  map - <C-W>-
 endif
+
+
+" Sudo write (,W)
+noremap <leader>W :w !sudo tee %<CR>
+
+" in case you forgot to sudo
+cnoremap w!! %!sudo tee > /dev/null %
+
+
+" node.vim commands
+autocmd User Node
+  \ if &filetype == "javascript" |
+  \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
+  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
+  \ endif
+
+
 
 " Load local machine settings if they exist
 if filereadable(glob("$HOME/.vimrc.local"))
