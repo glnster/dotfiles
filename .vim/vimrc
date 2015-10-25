@@ -1,5 +1,7 @@
 " .vimrc
 
+inoremap jk <ESC>
+
 " !silent is used to suppress error messages if the config line
 " references plugins/colorschemes that might be missing
 
@@ -266,12 +268,13 @@ if exists('$TMUX')  " Support resizing in tmux
   set ttymouse=xterm2
 endif
 
-"nnoremap <C-Tab> :bn<CR>
-"nnoremap <C-S-Tab> :bp<CR>
-
 " File Tabs
-nnoremap ,tp tabp<CR>
-nnoremap ,tn tabn<CR>
+"nnoremap <C-Tab> :tabprev<CR>
+"nnoremap <C-S-Tab> :tabnext<CR>
+noremap ,th :tabprev<CR>
+nnoremap ,tl :tabnext<CR>
+nnoremap ,tn :tabnew<CR>
+nnoremap ,tw :tabclose<CR>
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
