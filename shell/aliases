@@ -91,6 +91,7 @@ alias gc='git commit -v'
 alias gc!='git commit -v --amend'
 alias gca='git commit -v -a'
 alias gca!='git commit -v -a --amend'
+alias gcln='git clean -fd'
 alias gcmsg='git commit -m'
 alias gcs='git commit -S'
 
