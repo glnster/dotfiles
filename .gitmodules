@@ -76,6 +76,6 @@
 [submodule ".vim/bundle/vim-visual-star-search"]
 	path = .vim/bundle/vim-visual-star-search
 	url = https://github.com/bronson/vim-visual-star-search.git
-[submodule ".vim/colors/sweater"]
-	path = .vim/colors/sweater
-	url = https://github.com/nice/sweater
+[submodule ".vim/bundle/vim-multiple-cursors"]
+	path = .vim/bundle/vim-multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors.git
