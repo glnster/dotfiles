@@ -213,18 +213,25 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_symbols.space = "\ua0"
 let g:airline_theme='bubblegum'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#branch#empty_message = ''
 let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#bufferline#enabled = 0
+" hide filetype, file format
+let g:airline_section_x = ''
+let g:airline_section_y = ''
+let g:bufferline_echo = 0
+let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#tagbar#flags = ''
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#tagbar#flags = 's'
 let g:airline#extensions#tagbar#flags = 'p'
-let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline#extensions#whitespace#symbol = '!'
 let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
@@ -262,7 +269,7 @@ nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>
 
 
 " Strip trailing whitespace (,$)
-noremap <leader>$ :call StripTrailingWhitespace()<CR>
+"noremap <leader>$ :call StripTrailingWhitespace()<CR>
 
 
 " Faster viewport scrolling (3 lines at a time)
@@ -291,10 +298,10 @@ map <Leader>, <C-^>
 map <Leader>- :bn<CR>
 map <Leader>= :bp<CR>
 map <Leader>ls :buffers<CR>
+map <Leader>d :bp\|bd #<CR>
 
-
-" Close Quickfix window (,qq)
-map <leader>qq :cclose<CR>
+" Close all window (,qq)
+map <leader>qq :qa<CR>
 
 
 " Yank from cursor to end of line
@@ -325,8 +332,8 @@ endif
 
 
 " File Tabs
-"nnoremap <C-Tab> :tabprev<CR>
-"nnoremap <C-S-Tab> :tabnext<CR>
+nnoremap <C-Tab> :tabprev<CR>
+nnoremap <C-S-Tab> :tabnext<CR>
 noremap <leader>th :tabprev<CR>
 nnoremap <leader>tl :tabnext<CR>
 nnoremap <leader>tn :tabnew<CR>
