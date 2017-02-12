@@ -12,12 +12,14 @@ inoremap jk <ESC>
 call plug#begin('~/.vim/bundle')
 Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
 Plug 'ctrlpvim/ctrlp.vim',
 Plug 'raimondi/delimitmate'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
+Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
