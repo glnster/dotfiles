@@ -266,6 +266,16 @@ inoremap ˚ <Esc>:m .-2<CR>
 vnoremap ∆ :m '>+1<CR>
 vnoremap ˚ :m '<-2<CR>
 
+" Maps Alt-[h,l] to resizing a window split
+map <silent> ˙ <C-w><
+map <silent> ¬ <C-w>>
+" Maps Alt-[s.v] to horizontal and vertical split respectively
+map <silent> ß :split<CR>
+map <silent> √ :vsplit<CR>
+" Maps Alt-[n,p] for moving next and previous window respectively
+map <silent> ˜ <C-w><C-w>
+map <silent> π <C-w><S-w>
+
 
 " Hard to type things
 imap >> →
