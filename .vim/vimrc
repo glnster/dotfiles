@@ -8,6 +8,41 @@ let mapleader = ","
 
 inoremap jk <ESC>
 
+" ================== plugins ====================
+call plug#begin('~/.vim/bundle')
+Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+Plug 'lilydjwg/colorizer'
+Plug 'ctrlpvim/ctrlp.vim',
+Plug 'raimondi/delimitmate'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'andrewradev/splitjoin.vim'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/syntastic'
+Plug 'tomtom/tcomment_vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'docunext/closetag.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'isruslan/vim-es6'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'justinmk/vim-gtfo'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'pangloss/vim-javascript'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-obsession'
+Plug 'gikmx/ctrlp-obsession'
+Plug 'slim-template/vim-slim'
+Plug 'tpope/vim-surround'
+Plug 'mhinz/vim-startify'
+call plug#end()
+
 " ================== general ====================
 
 set backspace=2   " Backspace deletes like most programs in insert mode
@@ -67,20 +102,6 @@ set foldminlines=0
 " Set max fold nesting level
 set foldnestmax=3
 
-
-
-" ================== plugins ====================
-
-" !silent is used to suppress error messages if the config line references plugins/colorschemes that might be missing
-" Point to location of pathogen submodule (since it's not in .vim/autoload)
-silent! runtime bundle/vim-pathogen/autoload/pathogen.vim
-
-" List of disabled plugins
-let g:pathogen_disabled = ['YouCompleteMe']
-
-" Call pathogen plugin management
-"execute pathogen#infect()
-silent! call pathogen#infect()
 
 if has("autocmd")
     " Load files for specific filetypes
