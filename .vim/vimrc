@@ -107,15 +107,15 @@ endif
 if has("syntax")
     " Enable syntax highlighting
     syntax enable
-    " Set 256 color terminal support
-    set t_Co=256
 endif
 
 " gui settings
 set background=dark
-if (&t_Co == 256 || has('gui_running'))
-  if ($TERM_PROGRAM == 'iTerm.app')
-    colorscheme neodark
+if $TERM_PROGRAM =~ 'iTerm'
+    " Set true color. Requires Vim v.7.4.1799 or greater
+    set termguicolors
+
+    colorscheme material-theme
     "colorscheme sweater
     "colorscheme jellybeans
     "colorscheme sourcerer
@@ -125,9 +125,11 @@ if (&t_Co == 256 || has('gui_running'))
     "let g:solarized_termcolors=256
     "let g:solarized_contrast="low"
     "let g:solarized_visibility="high"
-  else
-    colorscheme sourcerer
-  endif
+else
+    " Set 256 color terminal support
+    set t_Co=256
+
+    colorscheme sweater
 endif
 
 if has("cmdline_info")
