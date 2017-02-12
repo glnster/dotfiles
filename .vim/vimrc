@@ -112,10 +112,11 @@ if has("syntax")
 endif
 
 " gui settings
-set background=light
+set background=dark
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
-    colorscheme sweater
+    colorscheme neodark
+    "colorscheme sweater
     "colorscheme jellybeans
     "colorscheme sourcerer
 
