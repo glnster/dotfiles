@@ -11,7 +11,6 @@ inoremap jk <ESC>
 " ================== plugins ====================
 call plug#begin('~/.vim/bundle')
 Plug 'mileszs/ack.vim'
-Plug 'rking/ag.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
 Plug 'ctrlpvim/ctrlp.vim',
@@ -207,10 +206,19 @@ endif
 " Use The Silver Searcher
 if executable('ag')
   " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" Ack settings
+if executable('ack')
+  let g:ackprg = 'ag --vimgrep'
+  let g:ackhighlight = 1
 endif
 
 " Fix Cursor in TMUX
@@ -381,17 +389,18 @@ nnoremap <leader>tl :tabnext<CR>
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>tw :tabclose<CR>
 
+" Window navigation
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
 "noremap <leader>l :Align
-nnoremap <leader>a :Ag<space>
+nnoremap <leader>a :Ack!<space>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+nnoremap <leader>P :CtrlPClearCache<CR>:CtrlP<CR>
 "nnoremap <leader>\ :TagbarToggle<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>c <Plug>Kwbd
