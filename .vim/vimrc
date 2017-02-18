@@ -1,10 +1,4 @@
-"set shell=zsh " Local shell. Set in .vimrc.local.
-
-set nocompatible " Disable legacy vi compatiblity
-
-" Leader
-let mapleader = ","
-inoremap jj <ESC>
+set nocompatible " D_Fisable legacy vi compatiblity
 
 " Start vim-plug
 " Some vim-plug cmds: PlugInstall, PlugUpdate, PlugClean, PlugUpgrade
@@ -121,6 +115,12 @@ set textwidth=80 " text wrap
 "set colorcolumn=+1 " Make it obvious where 80 characters is
 
 
+" Startify settings
+let g:startify_session_autoload = 1
+let g:startify_session_persistence = 1
+let g:startify_change_to_vcs_root = 1
+
+
 " Filetype settings
 if has("autocmd")
   " Languages with specific tabs/space requirements
@@ -172,6 +172,10 @@ if has('statusline')
   set statusline+=\ [%{getcwd()}]
   " Right aligned file nav info
   set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+  " scrooloose/syntastic
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}@/T7
+  set statusline+=%*
 endif
 
 
@@ -201,8 +205,6 @@ if has("extra_search")
   " ...unless has mixed case
   set smartcase
 endif
-
-" Use The Silver Searcher
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor\ --column
@@ -213,14 +215,14 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-" Ack settings
 if executable('ack')
   let g:ackprg = 'ag --vimgrep'
   let g:ackhighlight = 1
 endif
 
+
 " CtrlP settings
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_show_hidden = 1 " Show hidden files when using ctrlp
 let g:ctrlp_match_window = 'order:ttb,max:20'
 
@@ -240,17 +242,51 @@ endif
 
 
 
-" plugin settings
-let g:NERDSpaceDelims=1
+" Gitgutter settings
 let g:gitgutter_enabled = 1
 
 
-" Custom keymap for vim-multiple-cursors
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-d>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+" vmustache/vim-mustache-handlebars settings
+let g:mustache_abbreviations = 1
+
+" scrooloose/nerdtree setings
+let g:NERDSpaceDelims=1
+let NERDTreeMouseMode = 2
+let NERDTreeRespectWildIgnore = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeIgnore=[
+      \'^pemberly$',
+      \'^\.gradle$',
+      \'^\.log$',
+      \'^logs$',
+      \'^i18n$',
+      \'^node_modules$',
+      \'^dist$',
+      \'^tmp$',
+      \'^bower_components$',
+      \'^coverage$',
+      \'^build$',
+      \'^acl$',
+      \'^screenshots$',
+      \'^tools$',
+      \'^vendor$',
+      \'^docs$',
+      \'^out$',
+      \'^public$']
+
+
+" scrooloose/syntastic settings
+let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/eslint'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_error_symbol = '✖'
+let g:syntastic_style_error_symbol = '✖'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_warning_symbol = '⚠'
 
 
 " airline settings
@@ -275,13 +311,39 @@ let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
 
 
-" ================== remaps ====================
+" elzr/vim-json
+let g:vim_json_syntax_conceal = 0
 
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
+" pangloss/vim-javascript
+let g:javascript_plugin_jsdoc = 0
 
-" Better mark jumping (line + col)
-nnoremap ' `
+" heavenshell/vim-jsdoc
+let g:jsdoc_enable_es6 = 1
+let g:jsdoc_allow_input_prompt = 1
+
+
+" ================== Keymaps ====================
+let mapleader = ","
+inoremap jj <ESC>
+
+
+
+"---------- Editor Modification ----------
+" Insert newline
+map <leader><Enter> o<ESC>
+
+" Search and replace word under cursor (,*)
+nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+
+" Join lines and restore cursor location (J)
+nnoremap J mjJ`j
+
+" Make `Y` work from the cursor to the end of line (which is more logical)
+nnoremap Y y$
+
+" Paste toggle ()
+" set pastetoggle=<leader>p
+" map <leader>p :set invpaste paste?<CR>
 
 " Move current line or selected block up/down. Works in normal, insert and visual modes
 " For Mac only! Alt+j/k
@@ -292,30 +354,27 @@ inoremap ˚ <Esc>:m .-2<CR>
 vnoremap ∆ :m '>+1<CR>
 vnoremap ˚ :m '<-2<CR>
 
-" Maps Alt-[h,l] to resizing a window split
-map <silent> ˙ <C-w><
-map <silent> ¬ <C-w>>
-" Maps Alt-[s.v] to horizontal and vertical split respectively
-map <silent> ß :split<CR>
-map <silent> √ :vsplit<CR>
-" Maps Alt-[n,p] for moving next and previous window respectively
-map <silent> ˜ <C-w><C-w>
-map <silent> π <C-w><S-w>
+" Custom keymap for vim-multiple-cursors
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
+" Sudo write (,W)
+noremap <leader>W :w !sudo tee %<CR>
+nnoremap <Leader>w :w!<CR>
+nnoremap <Leader>wq :wq!<CR>
+nnoremap <Leader>wa :wa!<CR>
 
 
-" Hard to type things
-imap >> →
-imap << ←
-imap ^^ ↑
-imap VV ↓
-imap aa λ
 
+"---------- Editor Movement/Navigation ----------
+" Better mark jumping (line + col)
+nnoremap ' `
 
-" turn off YCM
-nnoremap <leader>y :let g:ycm_auto_trigger=0<CR>
-" turn on YCM
-nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>
-
+" Toggle folds (<Space>)
+nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<CR>
 
 " Faster viewport scrolling (3 lines at a time)
 nnoremap <C-e> 3<C-e>
@@ -324,19 +383,10 @@ vnoremap <C-e> 3<C-e>
 vnoremap <C-y> 3<C-y>
 
 
-" Make `Y` work from the cursor to the end of line (which is more logical)
-nnoremap Y y$
 
-
-" Indent/unident block (,]) (,[)
-"nnoremap <leader>] >i{<CR>
-"nnoremap <leader>[ <i{<CR>
-
-
-" Paste toggle (,p)
-set pastetoggle=<leader>p
-map <leader>p :set invpaste paste?<CR>
-
+"---------- File Navigation ----------
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
 
 " Buffer navigation (,,) (,]) (,[) (,ls)
 map <Leader>, <C-^>
@@ -345,32 +395,12 @@ map <Leader>= :bp<CR>
 map <Leader>ls :buffers<CR>
 map <Leader>d :bp\|bd #<CR>
 
-" Close all window (,qq)
-map <leader>qq :qa<CR>
-
-
-" Yank from cursor to end of line
-nnoremap Y y$
-
-
-" Insert newline
-map <leader><Enter> o<ESC>
-
-
-" Search and replace word under cursor (,*)
-nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
-
-
-" Join lines and restore cursor location (J)
-nnoremap J mjJ`j
-
-
-" Toggle folds (<Space>)
-nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<CR>
+" Close all windows (,qq)
+map <leader>qq :qa!<CR>
 
 " File Tabs
-"nnoremap <C-Tab> :tabprev<CR>
-"nnoremap <C-S-Tab> :tabnext<CR>
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprev<CR>
 noremap <leader>th :tabprev<CR>
 nnoremap <leader>tl :tabnext<CR>
 nnoremap <leader>tn :tabnew<CR>
@@ -382,49 +412,56 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-"noremap <leader>l :Align
-nnoremap <leader>a :Ack!<space>
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>nt :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
-nnoremap <leader>P :CtrlPClearCache<CR>:CtrlP<CR>
-"nnoremap <leader>\ :TagbarToggle<CR>
-nnoremap <leader>g :GitGutterToggle<CR>
-nnoremap <leader>c <Plug>Kwbd
-" to reload vimrc
-noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
 
 
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
 
-
+"---------- Resizing ----------
 " Faster split resizing (+,-)
 if bufwinnr(1)
   map + <C-W>+
   map - <C-W>-
 endif
 
+" Resizing a window split Maps Alt-[h,l]
+map <silent> ˙ <C-w>>
+map <silent> ¬ <C-w><
+" Maps Alt-[s.v] to horizontal and vertical split respectively
+map <silent> ß :split<CR>
+map <silent> √ :vsplit<CR>
+" Maps Alt-[n] for moving next and previous window respectively
+" map <silent> ˜ <C-w><C-w>
+" map <silent> π <C-w><S-w>
 
-" Sudo write (,W)
-noremap <leader>W :w !sudo tee %<CR>
-
-" in case you forgot to sudo
-cnoremap w!! %!sudo tee > /dev/null %
 
 
-" node.vim commands
-autocmd User Node
-      \ if &filetype == "javascript" |
-      \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
-      \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
-      \ endif
+
+"---------- Plugin-related Keymaps ----------
+nnoremap <Leader>gs :Gstatus<CR><C-w>t<C-w>H
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <leader>g :GitGutterToggle<CR>
+nnoremap <leader>a :Ack!<space>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>P :CtrlPClearCache<CR>:CtrlP<CR>
+
+" Hot Reload vimrc
+noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" Valloric/ListToggle
+let g:lt_location_list_toggle_map = '<leader>l'
+let g:lt_quickfix_list_toggle_map = '<leader>q'
+
+
+
 
 
 
 " Load local machine settings if they exist
 if filereadable(glob("$HOME/.vimrc.local"))
+  "set shell=zsh " Local shell. Set in .vimrc.local.
   source $HOME/.vimrc.local
 endif
