@@ -1,47 +1,51 @@
-" .vimrc
+"set shell=zsh " Local shell. Set in .vimrc.local.
 
-" local shell
-"set shell=zsh
+set nocompatible " Disable legacy vi compatiblity
 
 " Leader
 let mapleader = ","
+inoremap jj <ESC>
 
-inoremap jk <ESC>
-
-" ================== plugins ====================
+" Start vim-plug
+" Some vim-plug cmds: PlugInstall, PlugUpdate, PlugClean, PlugUpgrade
 call plug#begin('~/.vim/bundle')
-Plug 'mileszs/ack.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'lilydjwg/colorizer'
-Plug 'ctrlpvim/ctrlp.vim',
-Plug 'raimondi/delimitmate'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'andrewradev/splitjoin.vim'
-Plug 'ervandew/supertab'
-Plug 'scrooloose/syntastic'
-Plug 'tomtom/tcomment_vim'
-Plug 'edkolev/tmuxline.vim'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'jeetsukumaran/vim-buffergator'
-Plug 'docunext/closetag.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'isruslan/vim-es6'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'justinmk/vim-gtfo'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'pangloss/vim-javascript'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-obsession'
-Plug 'gikmx/ctrlp-obsession'
-Plug 'slim-template/vim-slim'
-Plug 'tpope/vim-surround'
-Plug 'mhinz/vim-startify'
+  Plug 'mileszs/ack.vim' " Vim ack/ag integration
+  Plug 'bling/vim-airline' " Fancy statusbar
+  Plug 'vim-airline/vim-airline-themes' " Themes for fancy statusbar
+  Plug 'jiangmiao/auto-pairs' " Automatically insert pairs of quotes/braces/brackets while typing
+  Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespace
+  Plug 'qpkorr/vim-bufkill' " Kill buffer without killing the split/window
+  Plug 'jeetsukumaran/vim-buffergator' " Buffer management
+  Plug 'docunext/closetag.vim' " Auto html5 tag closer
+  Plug 'ctrlpvim/ctrlp.vim', " Fuzzy filename matcher
+  Plug 'raimondi/delimitmate' " Insert-mode auto-completion for quotes, parens, brackets
+  Plug 'junegunn/vim-easy-align' " Alignment
+  Plug 'editorconfig/editorconfig-vim' " For consistent coding style
+  Plug 'isruslan/vim-es6' " es6 syntax and snippets
+  Plug 'mattn/emmet-vim' " Emmet expansion
+  Plug 'tpope/vim-fugitive' " Git inigration for vim
+  Plug 'justinmk/vim-gtfo' " Go to terminal or file manager
+  Plug 'airblade/vim-gitgutter' " Git in ur gutter
+  Plug 'othree/html5.vim' " HTML5 syntax enhancements
+  Plug 'nathanaelkane/vim-indent-guides' " Visually display indent guides
+  Plug 'pangloss/vim-javascript' " Better es6/es2015 syntax support
+  Plug 'Valloric/ListToggle' " Quickly toggle Quickfix and Location panels
+  Plug 'elzr/vim-json' " JSON syntax enhancments for vim
+  Plug 'terryma/vim-multiple-cursors' " ST3 style multi selection
+  Plug 'mustache/vim-mustache-handlebars' " Handlebars syntax enhancements
+  Plug 'scrooloose/nerdtree' " File manager
+  Plug 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
+  Plug 'xuyuanp/nerdtree-git-plugin' " Git status in nerdtree
+  Plug 'cakebaker/scss-syntax.vim' " Sass/Scss syntax enhancements
+  Plug 'slim-template/vim-slim' " Syntax highlighting
+  Plug 'andrewradev/splitjoin.vim' " Split and join lines
+  Plug 'mhinz/vim-startify' " Fancy start screen showing recently edited files
+  Plug 'ervandew/supertab' " Tab autocompletion
+  Plug 'tpope/vim-surround' " Plugin for working with quotes/braces/brackets etc
+  Plug 'scrooloose/syntastic' " Linter
+
+  " Color Themes
+  Plug 'jdkanani/vim-material-theme'
 call plug#end()
 
 " ================== general ====================
@@ -68,10 +72,11 @@ set scrolloff=3   " Start scrolling three lines before the horizontal window bor
 set nostartofline   " Don’t reset cursor to start of line when moving around.
 set clipboard=unnamed   " yank and paste with the system clipboard
 set directory-=.   " don't store swapfiles in the current directory
-set list listchars=tab:»·,trail:·,nbsp:·   " Display extra whitespace
 set fcs=fold:-
 set textwidth=80   " text wrap
-set colorcolumn=+1   " Make it obvious where 80 characters is
+"set colorcolumn=+1   " Make it obvious where 80 characters is
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -264,8 +269,8 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#bufferline#enabled = 0
 " hide filetype, file format
-let g:airline_section_x = ''
-let g:airline_section_y = ''
+"let g:airline_section_x = ''
+"let g:airline_section_y = ''
 let g:bufferline_echo = 0
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#tagbar#flags = ''
@@ -376,6 +381,8 @@ nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' :
 
 " Enable basic mouse behavior such as resizing buffers.
 set mouse=a
+" hide the mouse in the gui while typing
+set mousehide
 if exists('$TMUX')  " Support resizing in tmux
   set ttymouse=xterm2
 endif
