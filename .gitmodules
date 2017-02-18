@@ -38,4 +38,5 @@
 	path = .vim/bundle/ack.vim
   url = https://github.com/mileszs/ack.vim.git
 [submodule ".vim/bundle/auto-pairs"]
-	path = .vim/bundle/auto-pairs
+  path = .vim/bundle/auto-pairs
+  url = https://github.com/jiangmiao/auto-pairs
