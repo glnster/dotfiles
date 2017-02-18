@@ -14,7 +14,7 @@ call plug#begin('~/.vim/bundle')
  Plug 'vim-airline/vim-airline-themes' " Themes for fancy statusbar
  Plug 'jiangmiao/auto-pairs' " Automatically insert pairs of quotes/braces/brackets while typing
  Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespace
- Plug 'qpkorr/vim-bufkill' " Kill buffer without killing the split/window
+ "Plug 'qpkorr/vim-bufkill' " Kill buffer without killing the split/window
  Plug 'jeetsukumaran/vim-buffergator' " Buffer management
  Plug 'docunext/closetag.vim' " Auto html5 tag closer
  Plug 'ctrlpvim/ctrlp.vim', " Fuzzy filename matcher
