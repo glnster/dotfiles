@@ -40,3 +40,50 @@
 [submodule ".vim/bundle/auto-pairs"]
   path = .vim/bundle/auto-pairs
   url = https://github.com/jiangmiao/auto-pairs
+[submodule ".vim/bundle/closetag.vim"]
+	path = .vim/bundle/closetag.vim
+[submodule ".vim/bundle/editorconfig-vim"]
+	path = .vim/bundle/editorconfig-vim
+[submodule ".vim/bundle/html5.vim"]
+	path = .vim/bundle/html5.vim
+[submodule ".vim/bundle/ListToggle"]
+	path = .vim/bundle/ListToggle
+[submodule ".vim/bundle/nerdcommenter"]
+	path = .vim/bundle/nerdcommenter
+[submodule ".vim/bundle/nerdtree-git-plugin"]
+	path = .vim/bundle/nerdtree-git-plugin
+[submodule ".vim/bundle/scss-syntax.vim"]
+	path = .vim/bundle/scss-syntax.vim
+[submodule ".vim/bundle/splitjoin.vim"]
+	path = .vim/bundle/splitjoin.vim
+[submodule ".vim/bundle/supertab"]
+	path = .vim/bundle/supertab
+[submodule ".vim/bundle/vim-airline-themes"]
+	path = .vim/bundle/vim-airline-themes
+[submodule ".vim/bundle/vim-buffergator"]
+	path = .vim/bundle/vim-buffergator
+[submodule ".vim/bundle/vim-es6"]
+	path = .vim/bundle/vim-es6
+[submodule ".vim/bundle/vim-gtfo"]
+	path = .vim/bundle/vim-gtfo
+	url = https://github.com/justinmk/vim-gtfo.git
+[submodule ".vim/bundle/vim-indent-guides"]
+	path = .vim/bundle/vim-indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
+[submodule ".vim/bundle/vim-javascript"]
+	path = .vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".vim/bundle/vim-json"]
+	path = .vim/bundle/vim-json
+[submodule ".vim/bundle/vim-material-theme"]
+	path = .vim/bundle/vim-material-theme
+[submodule ".vim/bundle/vim-mustache-handlebars"]
+	path = .vim/bundle/vim-mustache-handlebars
+[submodule ".vim/bundle/vim-startify"]
+	path = .vim/bundle/vim-startify
+[submodule ".vim/bundle/vim-surround"]
+	path = .vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/vim-slim"]
+	path = .vim/bundle/vim-slim
+	url = https://github.com/slim-template/vim-slim.git
