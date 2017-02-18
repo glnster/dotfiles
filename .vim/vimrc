@@ -58,7 +58,7 @@ set lazyredraw
 set mouse=a " Turn on the mouse ;)
 set mousehide " hide the mouse in the gui while typing
 set ttyfast   " Optimize for fast terminal connections
-set shortmess=atI   " Don't show the intro message when starting vim
+"set shortmess=atI   " Don't show the intro message when starting vim
 set history=50
 set scrolloff=3   " Start scrolling three lines before the horizontal window border
 set nostartofline   " Don’t reset cursor to start of line when moving around.
@@ -368,7 +368,7 @@ noremap <leader>W :w !sudo tee %<CR>
 nnoremap <Leader>w :w!<CR>
 nnoremap <Leader>wq :wq!<CR>
 nnoremap <Leader>wa :wa!<CR>
-
+map <leader>qa :qa!<CR>
 
 
 "---------- Editor Movement/Navigation ----------
@@ -398,9 +398,6 @@ map <Leader>d :bp\|bd #<CR>
 " Vim list buffers
 map <Leader>ls :buffers<CR>
 
-
-" Close all windows (,qq)
-map <leader>qq :qa!<CR>
 
 " File Tabs
 noremap <leader>th :tabprev<CR>
