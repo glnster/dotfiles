@@ -17,6 +17,7 @@ call plug#begin('~/.vim/bundle')
  Plug 'isruslan/vim-es6' " es6 syntax and snippets
  Plug 'mattn/emmet-vim' " Emmet expansion
  Plug 'tpope/vim-fugitive' " Git inigration for vim
+ Plug 'ktonga/vim-follow-my-lead' " ,fml to display all leader key mappings
  Plug 'justinmk/vim-gtfo' " Go to terminal or file manager
  Plug 'airblade/vim-gitgutter' " Git in ur gutter
  Plug 'othree/html5.vim' " HTML5 syntax enhancements
@@ -24,6 +25,7 @@ call plug#begin('~/.vim/bundle')
  Plug 'pangloss/vim-javascript' " Better es6/es2015 syntax support
  Plug 'Valloric/ListToggle' " Quickly toggle Quickfix and Location panels
  Plug 'elzr/vim-json' " JSON syntax enhancments for vim
+ Plug 'lukhio/vim-mapping-conflicts' " :CheckMapping checks for key mapping conflicts
  Plug 'terryma/vim-multiple-cursors' " ST3 style multi selection
  Plug 'mustache/vim-mustache-handlebars' " Handlebars syntax enhancements
  Plug 'scrooloose/nerdtree' " File manager
@@ -60,6 +62,7 @@ set autoread " Auto re-read files that have changes outside of vim
 set lazyredraw
 set mouse=a " Turn on the mouse ;)
 set mousehide " hide the mouse in the gui while typing
+set ttymouse=sgr " Support resizing
 set ttyfast   " Optimize for fast terminal connections
 "set shortmess=atI   " Don't show the intro message when starting vim
 set history=50
@@ -232,8 +235,7 @@ let g:ctrlp_match_window = 'order:ttb,max:20'
 
 
 " TMUX Settings
-if exists('$TMUX')
-  set ttymouse=xterm2 " Support resizing in tmux
+if exists('$TMUX') 
   " Fix Cursor in TMUX
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -336,6 +338,9 @@ let g:javascript_plugin_jsdoc = 0
 " heavenshell/vim-jsdoc
 let g:jsdoc_enable_es6 = 1
 let g:jsdoc_allow_input_prompt = 1
+
+" follow my lead (fml) settings
+let g:fml_all_sources = 1
 
 
 " ================== Keymaps ====================

@@ -1,0 +1,47 @@
+Mode  -  Key sequence  -  Command
+
+n	<C-D>	* :call multiple_cursors#new("n", 1)<CR>
+n	<C-E>	* 3<C-E>
+ 	<C-H>	* <C-W>h
+n	<Tab>	* :bnext<CR>
+ 	<NL>	* <C-W>j
+ 	<C-K>	* <C-W>k
+ 	<C-L>	* <C-W>l
+ 	<C-P>	<Plug>(ctrlp)
+n	<C-Y>A	<Plug>(emmet-anchorize-summary)
+n	<C-Y>a	<Plug>(emmet-anchorize-url)
+n	<C-Y>k	<Plug>(emmet-remove-tag)
+n	<C-Y>j	<Plug>(emmet-split-join-tag)
+n	<C-Y>/	<Plug>(emmet-toggle-comment)
+n	<C-Y>i	<Plug>(emmet-image-size)
+n	<C-Y>N	<Plug>(emmet-move-prev)
+n	<C-Y>n	<Plug>(emmet-move-next)
+n	<C-Y>D	<Plug>(emmet-balance-tag-outword)
+n	<C-Y>d	<Plug>(emmet-balance-tag-inward)
+n	<C-Y>u	<Plug>(emmet-update-tag)
+n	<C-Y>;	<Plug>(emmet-expand-word)
+n	<C-Y>,	<Plug>(emmet-expand-abbr)
+n	<C-Y>	* 3<C-Y>
+ 	<C-_>	a<C-_><Esc>
+n	<Space>	* :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<CR>
+n	<SNR>35_:	* :<C-U><C-R>=v:count ? v:count : ''<CR>
+n	<S-Tab>	* :bprev<CR>
+n	<D-v>	"*P
+x	<C-D>	* :<C-U>call multiple_cursors#new("v", 0)<CR>
+v	<C-E>	* 3<C-E>
+ 	<C-H>	* <C-W>h
+ 	<NL>	* <C-W>j
+ 	<C-K>	* <C-W>k
+ 	<C-L>	* <C-W>l
+ 	<C-P>	<Plug>(ctrlp)
+v	<C-Y>c	<Plug>(emmet-code-pretty)
+v	<C-Y>m	<Plug>(emmet-merge-lines)
+v	<C-Y>D	<Plug>(emmet-balance-tag-outword)
+v	<C-Y>d	<Plug>(emmet-balance-tag-inward)
+v	<C-Y>,	<Plug>(emmet-expand-abbr)
+v	<C-Y>	* 3<C-Y>
+ 	<C-_>	a<C-_><Esc>
+v	<BS>	"-d
+v	<D-x>	"*d
+v	<D-c>	"*y
+v	<D-v>	"-d"*P
