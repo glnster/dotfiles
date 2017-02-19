@@ -8,7 +8,6 @@ call plug#begin('~/.vim/bundle')
  Plug 'vim-airline/vim-airline-themes' " Themes for fancy statusbar
  Plug 'jiangmiao/auto-pairs' " Automatically insert pairs of quotes/braces/brackets while typing
  Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespace
- "Plug 'qpkorr/vim-bufkill' " Kill buffer without killing the split/window
  Plug 'jeetsukumaran/vim-buffergator' " Buffer management
  Plug 'docunext/closetag.vim' " Auto html5 tag closer
  Plug 'ctrlpvim/ctrlp.vim', " Fuzzy filename matcher
@@ -29,6 +28,7 @@ call plug#begin('~/.vim/bundle')
  Plug 'mustache/vim-mustache-handlebars' " Handlebars syntax enhancements
  Plug 'scrooloose/nerdtree' " File manager
  Plug 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
+ Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
  Plug 'xuyuanp/nerdtree-git-plugin' " Git status in nerdtree
  Plug 'cakebaker/scss-syntax.vim' " Sass/Scss syntax enhancements
  Plug 'slim-template/vim-slim' " Syntax highlighting
@@ -40,6 +40,9 @@ call plug#begin('~/.vim/bundle')
 
 " Color Themes
  Plug 'jdkanani/vim-material-theme'
+
+  " Dev icons. (must load last)
+  Plug 'ryanoasis/vim-devicons' " Nerd fonts file/symbol icons
 call plug#end()
 
 
@@ -250,6 +253,7 @@ let g:gitgutter_enabled = 1
 let g:mustache_abbreviations = 1
 
 " scrooloose/nerdtree setings
+let NERDTreeHijackNetrw = 0 " For Startify session autoload
 let g:NERDSpaceDelims=1
 let NERDTreeMouseMode = 2
 let NERDTreeRespectWildIgnore = 1
@@ -276,6 +280,15 @@ let NERDTreeIgnore=[
       \'^public$']
 
 
+" tiagofumo/vim-nerdtree-syntax-highlight
+let s:yellow = "F2DD58"
+let s:green = "8FAA54"
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['js'] = s:yellow " make js a brighter yellow
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['json'] = s:green " make json green
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid  error
+
 " scrooloose/syntastic settings
 let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/eslint'
 let g:syntastic_always_populate_loc_list = 1
@@ -287,6 +300,9 @@ let g:syntastic_error_symbol = '✖'
 let g:syntastic_style_error_symbol = '✖'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_warning_symbol = '⚠'
+
+" ryanoasis/vim-devicons
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 
 " airline settings
@@ -437,7 +453,8 @@ map <silent> √ :vsplit<CR>
 "---------- Plugin-related Keymaps ----------
 nnoremap <Leader>gs :Gstatus<CR><C-w>t<C-w>H
 nnoremap <Leader>gb :Gblame<CR>
-nnoremap <leader>g :GitGutterToggle<CR>
+noremap <leader>g :GitGutterToggle<CR>
+noremap <leader>i :IndentGuidesToggle<CR>
 nnoremap <leader>a :Ack!<space>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
