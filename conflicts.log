@@ -1,7 +1,6 @@
 Mode  -  Key sequence  -  Command
 
-n	<C-D>	* :call multiple_cursors#new("n", 1)<CR>
-n	<C-E>	* 3<C-E>
+n	<C-F>	* :Find<Space>
  	<C-H>	* <C-W>h
 n	<Tab>	* :bnext<CR>
  	<NL>	* <C-W>j
@@ -21,14 +20,12 @@ n	<C-Y>d	<Plug>(emmet-balance-tag-inward)
 n	<C-Y>u	<Plug>(emmet-update-tag)
 n	<C-Y>;	<Plug>(emmet-expand-word)
 n	<C-Y>,	<Plug>(emmet-expand-abbr)
-n	<C-Y>	* 3<C-Y>
  	<C-_>	a<C-_><Esc>
 n	<Space>	* :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<CR>
 n	<SNR>35_:	* :<C-U><C-R>=v:count ? v:count : ''<CR>
 n	<S-Tab>	* :bprev<CR>
+n	<F2>	* :set invpaste paste?<CR>
 n	<D-v>	"*P
-x	<C-D>	* :<C-U>call multiple_cursors#new("v", 0)<CR>
-v	<C-E>	* 3<C-E>
  	<C-H>	* <C-W>h
  	<NL>	* <C-W>j
  	<C-K>	* <C-W>k
@@ -39,8 +36,8 @@ v	<C-Y>m	<Plug>(emmet-merge-lines)
 v	<C-Y>D	<Plug>(emmet-balance-tag-outword)
 v	<C-Y>d	<Plug>(emmet-balance-tag-inward)
 v	<C-Y>,	<Plug>(emmet-expand-abbr)
-v	<C-Y>	* 3<C-Y>
  	<C-_>	a<C-_><Esc>
+v	<	* <<CR>gv
 v	<BS>	"-d
 v	<D-x>	"*d
 v	<D-c>	"*y
