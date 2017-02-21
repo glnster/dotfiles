@@ -1,8 +1,9 @@
-set nocompatible " D_Fisable legacy vi compatiblity
+set nocompatible " Disable legacy vi compatiblity
+" Don't let Vimwiki override Tab
 nmap <leader>wn <Plug>VimwikiNextLink
 nmap <Leader>wp <Plug>VimwikiPrevLink
 
-" Start vim-plug
+" Plugins {{{
 " Some vim-plug cmds: PlugInstall, PlugUpdate, PlugClean, PlugUpgrade
 call plug#begin('~/.vim/bundle')
   Plug 'mileszs/ack.vim' " Vim ack/ag integration
@@ -50,9 +51,10 @@ call plug#begin('~/.vim/bundle')
   " Dev icons. (must load last)
   Plug 'ryanoasis/vim-devicons' " Nerd fonts file/symbol icons
 call plug#end()
+" }}}
 
 
-" General defaults
+" General defaults {{{
 filetype plugin indent on " Allow smart indentation and filetype detection
 set encoding=utf8 nobomb " Set charset to utf8 (Necessary for fancy icon plugins)
 syntax enable " Turn on syntax highlighting
@@ -60,7 +62,7 @@ set number " Turn on line numbers
 set bg=dark " Dark background
 set hidden " Allow 'hidden' buffers
 set nowrap " Disable line auto wrapping
-set cursorline " highlight current line
+"set cursorline " highlight current line
 set numberwidth=5 " Gutter width
 set autoread " Auto re-read files that have changes outside of vim
 set lazyredraw
@@ -72,136 +74,30 @@ set history=50
 set scrolloff=3   " Start scrolling three lines before the horizontal window border
 set nostartofline   " Don’t reset cursor to start of line when moving around.
 set clipboard=unnamed   " yank and paste with the system clipboard
+set modelines=1 " To use special fold mode for vim file
+set diffopt+=vertical " Always use vertical diffs
+" }}}
 
-
-" Swap/Backup file settings
+" Swap/Backup file settings {{{
 set noswapfile " no more weirdo swap files
 set nobackup " no more weirdo backup files
 set nowritebackup " no more weirdo write backup files
 set backupdir=~/.backup " Where backups would go if we had them
 set dir=~/.swap " Where swap files would go if we had them
 set directory-=.   " don't store swapfiles in the current directory
+" }}}
 
-
-" Split/window behavior
+" Split/window behavior {{{
 set splitright " Open vertical splits/windows to the right by default
 set splitbelow " Open horizontal splits/windows to the bottom by default
 set switchbuf=useopen " Switch to active window if attempting to split an already active buffer
+" }}}
 
-
-" Search settings
+" Search settings {{{
 set ignorecase " case-insensitive searching
 set smartcase " make search case-sensitive if search term contains mixed case
 set hlsearch " Highlight search pattern matches
 set incsearch " Add live highlighting to matches while typing search term
-
-
-" Indentation settings
-let g:indentation_depth = 2
-let &tabstop=g:indentation_depth " Set tab character width
-let &backspace=g:indentation_depth " Make backspace work like a sane person would expect
-let &shiftwidth=g:indentation_depth " Set distance to move lines or blocks
-let &softtabstop=g:indentation_depth " Set space added by pressing tab key and removed by pressing backspace
-set backspace=indent,eol,start   " Backspace through everything in INSERT mode
-set autoindent " keeps indention at current depth for successive lines
-set copyindent " copy the previous indentation on autoindenting
-set expandtab " Convert tabs to spaces
-let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
-
-
-" Always use vertical diffs
-set diffopt+=vertical
-
-
-" Code folding & wrap guides
-set foldcolumn=2
-set foldlevel=99 " show all folds by default
-set foldlevelstart=99 " show all folds by default
-set fcs=fold:-
-set textwidth=80 " text wrap
-"set colorcolumn=+1 " Make it obvious where 80 characters is
-
-
-" Startify settings
-let g:startify_session_autoload = 1
-let g:startify_session_persistence = 1
-let g:startify_change_to_vcs_root = 1
-
-
-" Filetype settings
-if has("autocmd")
-  " Languages with specific tabs/space requirements
-  autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
-  " Automatically strip trailing whitespace on file save using better-whitespace
-  autocmd FileType css,html,js,json,md,php,py,rb,scss,sh,txt autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
-  " Don't treat json as javascript
-  autocmd BufRead,BufNewFile *.json set filetype=json
-  " fdoc is yaml
-  autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-  " md is markdown
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd BufRead,BufNewFile *.md set spell
-  autocmd BufRead,BufNewFile *.wiki set filetype=vimwiki
-  " automatically rebalance windows on vim resize
-  autocmd VimResized * :wincmd =
-endif
-
-
-" GUI & Theme settings
-if $TERM_PROGRAM =~ 'iTerm'
-  " True color. Requires Vim v.7.4.1799 or greater
-  set termguicolors
-  colorscheme material-theme
-else
-  " 256 color terminal support
-  set t_Co=256
-  colorscheme sweater
-endif
-
-
-" Status & Info settings
-if has("cmdline_info")
-  " Show the cursor line and column number
-  set ruler
-  " Show partial commands in status line
-  set showcmd
-  " Show whether in insert or replace mode
-  set showmode
-endif
-if has('statusline')
-  " Always show status line
-  set laststatus=2
-  " Broken down into easily includeable segments
-  " Filename
-  set statusline=%<%f\
-  " Options
-  set statusline+=%w%h%m%r
-  " Current dir
-  set statusline+=\ [%{getcwd()}]
-  " Right aligned file nav info
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%%
-  " scrooloose/syntastic
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}@/T7
-  set statusline+=%*
-endif
-
-
-" Wildmenu settings - for command autocompletion
-if has("wildmenu")
-  set wildmenu " Show completion options (filenames, plugin functions, etc) in a traversable menu
-  " Tab autocomplete longest possible part of a string, then list
-  set wildmode=longest,list,full
-  if has ("wildignore")
-    set wildignore+=*.a,*.pyc,*.o,*.orig
-    set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png
-    set wildignore+=.DS_Store,.git,.hg,.svn
-    set wildignore+=*~,*.sw?,*.tmp
-    set wildignore=log/**,node_modules/**,*/bower_components/*,target/**,tmp/**,*.rbc
-  endif
-endif
-
 
 " Search plugin settings
 if executable('ag')
@@ -231,10 +127,111 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_show_hidden = 1 " Show hidden files when using ctrlp
 let g:ctrlp_match_window = 'order:ttb,max:20'
+" }}}
+"
+" Indents, folding, and guides {{{
+" Indentation settings
+let g:indentation_depth = 2
+let &tabstop=g:indentation_depth " Set tab character width
+let &backspace=g:indentation_depth " Make backspace work like a sane person would expect
+let &shiftwidth=g:indentation_depth " Set distance to move lines or blocks
+let &softtabstop=g:indentation_depth " Set space added by pressing tab key and removed by pressing backspace
+set backspace=indent,eol,start   " Backspace through everything in INSERT mode
+set autoindent " keeps indention at current depth for successive lines
+set copyindent " copy the previous indentation on autoindenting
+set expandtab " Convert tabs to spaces
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+
+" Code folding & wrap guides
+set foldmethod=indent " fold based on indent level
+set foldcolumn=2
+set foldlevel=99 " show all folds by default
+set foldlevelstart=99 " show all folds by default
+set fcs=fold:-
+set textwidth=80 " text wrap
+"set colorcolumn=+1 " Make it obvious where 80 characters is
+"}}}
+
+" Filetype {{{
+if has("autocmd")
+  " Languages with specific tabs/space requirements
+  autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
+  " Automatically strip trailing whitespace on file save using better-whitespace
+  autocmd FileType css,html,js,json,md,php,py,rb,scss,sh,txt autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
+  autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
+                \:call StripWhitespace()
+  " Don't treat json as javascript
+  autocmd BufRead,BufNewFile *.json set filetype=json
+  " fdoc is yaml
+  autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
+  " md is markdown
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile *.md set spell
+  autocmd BufRead,BufNewFile *.wiki set filetype=vimwiki
+  " automatically rebalance windows on vim resize
+  autocmd VimResized * :wincmd =
+endif
+" }}}
+
+" GUI & Theme {{{
+if $TERM_PROGRAM =~ 'iTerm'
+  " True color. Requires Vim v.7.4.1799 or greater
+  set termguicolors
+  colorscheme material-theme
+else
+  " 256 color terminal support
+  set t_Co=256
+  colorscheme sweater
+endif
+" }}}
+
+" Status & Info {{{
+if has("cmdline_info")
+  " Show the cursor line and column number
+  set ruler
+  " Show partial commands in status line
+  set showcmd
+  " Show whether in insert or replace mode
+  set showmode
+endif
+if has('statusline')
+  " Always show status line
+  set laststatus=2
+  " Broken down into easily includeable segments
+  " Filename
+  set statusline=%<%f\
+  " Options
+  set statusline+=%w%h%m%r
+  " Current dir
+  set statusline+=\ [%{getcwd()}]
+  " Right aligned file nav info
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+  " scrooloose/syntastic
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}@/T7
+  set statusline+=%*
+endif
+" }}}
 
 
+" Wildmenu {{{
+" for command autocompletion
+if has("wildmenu")
+  set wildmenu " Show completion options (filenames, plugin functions, etc) in a traversable menu
+  " Tab autocomplete longest possible part of a string, then list
+  set wildmode=longest,list,full
+  if has ("wildignore")
+    set wildignore+=*.a,*.pyc,*.o,*.orig
+    set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png
+    set wildignore+=.DS_Store,.git,.hg,.svn
+    set wildignore+=*~,*.sw?,*.tmp
+    set wildignore=log/**,node_modules/**,*/bower_components/*,target/**,tmp/**,*.rbc
+  endif
+endif
+" }}}
 
-" TMUX Settings
+" TMUX {{{
 if exists('$TMUX')
   " Fix Cursor in TMUX
   let &t_SI = "\<ESC>Ptmux;\<ESC>\<ESC>]50;CursorShape=1\x7\<ESC>\\"
@@ -244,17 +241,9 @@ else
   let &t_SR = "\<ESC>]50;CursorShape=2\x7"
   let &t_EI = "\<ESC>]50;CursorShape=0\x7"
 endif
+" }}}
 
-
-
-" Gitgutter settings
-let g:gitgutter_enabled = 1
-
-
-" vmustache/vim-mustache-handlebars settings
-let g:mustache_abbreviations = 1
-
-" scrooloose/nerdtree setings
+" Nerdtree {{{
 let NERDTreeHijackNetrw = 0 " For Startify session autoload
 let g:NERDSpaceDelims=1
 let NERDTreeMouseMode = 2
@@ -281,7 +270,6 @@ let NERDTreeIgnore=[
       \'^out$',
       \'^public$']
 
-
 " tiagofumo/vim-nerdtree-syntax-highlight
 let s:yellow = "F2DD58"
 let s:green = "8FAA54"
@@ -290,8 +278,9 @@ let g:NERDTreeExtensionHighlightColor['js'] = s:yellow " make js a brighter yell
 let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['json'] = s:green " make json green
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid  error
+" }}}
 
-" scrooloose/syntastic settings
+" Syntastic {{{
 let g:syntastic_javascript_eslint_exec = '$PWD/node_modules/.bin/eslint'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
@@ -302,12 +291,9 @@ let g:syntastic_error_symbol = '✖'
 let g:syntastic_style_error_symbol = '✖'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_warning_symbol = '⚠'
+"}}}
 
-" ryanoasis/vim-devicons
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
-
-" airline settings
+" Airline {{{
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -327,7 +313,22 @@ let g:airline#extensions#whitespace#symbol = '!'
 let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
 let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
+" }}}
 
+" Startify, GitGutter, File Specific, fml, Vimwiki {{{
+" Startify settings
+let g:startify_session_autoload = 1
+let g:startify_session_persistence = 1
+let g:startify_change_to_vcs_root = 1
+
+" Gitgutter settings
+let g:gitgutter_enabled = 1
+
+" vmustache/vim-mustache-handlebars settings
+let g:mustache_abbreviations = 1
+
+" ryanoasis/vim-devicons
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 " elzr/vim-json
 let g:vim_json_syntax_conceal = 0
@@ -345,9 +346,10 @@ let g:fml_all_sources = 1
 " Vimwiki settings
 let g:vimwiki_list = [{'path': '~/.vim/vimwiki/vim-notes.wiki'}]
 let g:vimwiki_use_mouse=1
+" }}}
 
-" ===============================================
-"                   KEYMAPS
+
+" KEYMAPS {{{
 " ===============================================
 let mapleader = ","
 " \/ turn off highlighting after a search
@@ -356,7 +358,7 @@ inoremap jj <ESC>
 
 
 
-"---------- Editor Modification ----------
+"---------- Editor Modification ---------- {{{
 " Insert newline
 map <leader><Enter> o<ESC>
 
@@ -399,17 +401,21 @@ nnoremap <leader>wq :wq!<CR>
 nnoremap <leader>wa :wa!<CR>
 noremap <leader>qa :qa!<CR>
 
+" }}}
 
-"---------- Editor Movement/Navigation ----------
+"---------- Editor Movement/Navigation ---------- {{{
 " Better mark jumping (line + col)
 nnoremap ' `
 
 " Toggle folds (<Space>)
 nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<CR>
 
+" highlight last inserted text
+nnoremap gV `[v`]
 
+" }}}
 
-"---------- File Navigation ----------
+"---------- File Navigation ---------- {{{
 " Next/prev buffer
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
@@ -430,10 +436,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+" }}}
 
-
-
-"---------- Resizing ----------
+"---------- Resizing ---------- {{{
 " Resizing a window split Maps Alt-[h,l]
 map <silent> ˙ <C-w>>
 map <silent> ¬ <C-w><
@@ -441,9 +446,9 @@ map <silent> ¬ <C-w><
 map <silent> ß :split<CR>
 map <silent> √ :vsplit<CR>
 
+" }}}
 
-
-"---------- Plugin-related Keymaps ----------
+"---------- Plugin-related Keymaps ---------- {{{
 nnoremap <leader>gs :Gstatus<CR><C-w>t<C-w>H
 nnoremap <leader>gb :Gblame<CR>
 noremap <leader>g :GitGutterToggle<CR>
@@ -458,14 +463,14 @@ nnoremap <leader>bp :CtrlPBuffer<CR>
 nnoremap <leader>P :CtrlPClearCache<CR>:CtrlP<CR>
 nnoremap <leader>S :Startify<CR>
 
-
 " Hot Reload vimrc
 noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+" }}}
 
-
+" }}} END KEY MAPS
 
 
 
@@ -475,3 +480,7 @@ if filereadable(glob("$HOME/.vimrc.local"))
   "set shell=zsh " Local shell. Set in .vimrc.local.
   source $HOME/.vimrc.local
 endif
+
+
+
+" vim:foldmethod=marker:foldlevel=0
