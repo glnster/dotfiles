@@ -1,0 +1,80 @@
+*halp.txt*
+*halp*
+
+My Vim cheat sheet
+
+
+== For Vimwiki help see ==
+* :h vimwiki-syntax
+* :h vimwiki-mappings
+* :h vimwiki-commands
+
+
+== Session ==
+* open previous session
+	- vim -S
+* save vim session
+	- :Obsess
+* cycle between windows
+	- ctrl+w ctrl+w
+	- ctrl+h/l
+* split window
+	- alt+v, alt+s
+* jump between splits
+	- ctrl+h, ctrl+l (el)
+* jump between buffers
+	- ,- and ,=
+	- ,b (open buffergator)
+* resize splits
+	- Alt+h, Alt+l (el)
+* close/combine splits
+	- :q
+*  close everything at once
+	-  :qa || :wqa || :qa!
+	-  :tabo (close all other tabs)
+	- ,qq
+
+
+== Search ==
+* search for file
+	- Ctrl+p
+* search fuzzy in project
+	- ,a (Ack)
+* jump to next/prev search result within the current file
+	- n, N
+* select word instances
+	- Ctrl+d, Ctrl+p, Ctrl+x
+
+
+== Edit ==
+* indent (in normal mode do)
+	- >> and<<
+	- Ctrl+t/d?
+*  move line up/down
+	-  Alt+j/k
+*  duplicate line
+	-  V y p
+*  How to comment
+	-  ,cc
+*  Multi cursor edit
+	-  place cursor, Ctrl-v, move selection, press capital I, type your edit, Esc
+	-  or use gn (http://vimcasts.org/episodes/operating-on-search-matches-using-gn/)
+
+== Plug ==
+* Update plugins
+	- :PlugInstall, or :PlugUpdate
+* reload vimrc
+	- :so $MYVIMRC
+	- ,V
+
+== NerdTree ==
+* ‘*’ means executable
+* m to bring up menu
+	- a to add file
+	- append / to create folder
+
+
+
+== Todo ==
+[  ] setup eslint and stylelint
+

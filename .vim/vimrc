@@ -43,7 +43,6 @@ call plug#begin('~/.vim/bundle')
   Plug 'ervandew/supertab' " Tab autocompletion
   Plug 'tpope/vim-surround' " cs[from][to] (change surrounds), ds (delete surrounds)
   Plug 'scrooloose/syntastic' " Linter
-  Plug 'vimwiki/vimwiki' " ,ws ,ww or vimwiki Wiki for vim
 
   " Color Themes
   Plug 'jdkanani/vim-material-theme'
@@ -128,7 +127,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_show_hidden = 1 " Show hidden files when using ctrlp
 let g:ctrlp_match_window = 'order:ttb,max:20'
 " }}}
-"
+
 " Indents, folding, and guides {{{
 " Indentation settings
 let g:indentation_depth = 2
@@ -159,8 +158,6 @@ if has("autocmd")
   autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
   " Automatically strip trailing whitespace on file save using better-whitespace
   autocmd FileType css,html,js,json,md,php,py,rb,scss,sh,txt autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
-  autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
-                \:call StripWhitespace()
   " Don't treat json as javascript
   autocmd BufRead,BufNewFile *.json set filetype=json
   " fdoc is yaml
@@ -168,7 +165,6 @@ if has("autocmd")
   " md is markdown
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile *.md set spell
-  autocmd BufRead,BufNewFile *.wiki set filetype=vimwiki
   " automatically rebalance windows on vim resize
   autocmd VimResized * :wincmd =
 endif
@@ -315,7 +311,7 @@ let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
 " }}}
 
-" Startify, GitGutter, File Specific, fml, Vimwiki {{{
+" Startify, GitGutter, File Specific, fml {{{
 " Startify settings
 let g:startify_session_autoload = 1
 let g:startify_session_persistence = 1
@@ -343,9 +339,6 @@ let g:jsdoc_allow_input_prompt = 1
 " follow my lead (fml) settings
 let g:fml_all_sources = 1
 
-" Vimwiki settings
-let g:vimwiki_list = [{'path': '~/.vim/vimwiki/vim-notes.wiki'}]
-let g:vimwiki_use_mouse=1
 " }}}
 
 
