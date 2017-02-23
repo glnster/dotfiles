@@ -15,7 +15,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'docunext/closetag.vim' " Auto html5 tag closer
   Plug 'ctrlpvim/ctrlp.vim', " Fuzzy filename matcher
   Plug 'raimondi/delimitmate' " Insert-mode auto-completion for quotes, parens, brackets
-  Plug 'junegunn/vim-easy-align' " Alignment
+  "Plug 'junegunn/vim-easy-align' " Alignment
   Plug 'editorconfig/editorconfig-vim' " For consistent coding style
   Plug 'isruslan/vim-es6' " es6 syntax and snippets
   Plug 'mattn/emmet-vim' " Emmet expansion
@@ -27,17 +27,18 @@ call plug#begin('~/.vim/bundle')
   Plug 'airblade/vim-gitgutter' " Git in ur gutter
   Plug 'othree/html5.vim' " HTML5 syntax enhancements
   Plug 'nathanaelkane/vim-indent-guides' " ,ig Visually display indent guides
-  Plug 'pangloss/vim-javascript' " Better es6/es2015 syntax support
-  Plug 'Valloric/ListToggle' " Quickly toggle Quickfix and Location panels
+  "Plug 'pangloss/vim-javascript' " Better es6/es2015 syntax support
   Plug 'elzr/vim-json' " JSON syntax enhancments for vim
+  Plug 'Valloric/ListToggle' " Quickly toggle Quickfix and Location panels
   Plug 'lukhio/vim-mapping-conflicts' " :CheckMapping checks for key mapping conflicts
   Plug 'mustache/vim-mustache-handlebars' " Handlebars syntax enhancements
   Plug 'scrooloose/nerdtree' " File manager
   Plug 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
   Plug 'xuyuanp/nerdtree-git-plugin' " Git status in nerdtree
+  Plug 'sheerun/vim-polyglot' " better syntax highlighting
   Plug 'cakebaker/scss-syntax.vim' " Sass/Scss syntax enhancements
-  Plug 'slim-template/vim-slim' " Syntax highlighting
+  "Plug 'slim-template/vim-slim' " Syntax highlighting
   Plug 'andrewradev/splitjoin.vim' " Split and join lines
   Plug 'mhinz/vim-startify' " Fancy start screen showing recently edited files
   Plug 'ervandew/supertab' " Tab autocompletion
@@ -296,8 +297,8 @@ if !exists('g:airline_symbols')
 endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_symbols.space = "\ua0"
-let g:airline_theme='bubblegum'
+"let g:airline_symbols.space = "\ua0"
+let g:airline_theme='onedark'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#branch#empty_message = ''
 let g:airline#extensions#branch#displayed_head_limit = 10
