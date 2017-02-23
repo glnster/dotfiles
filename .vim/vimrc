@@ -46,6 +46,7 @@ call plug#begin('~/.vim/bundle')
 
   " Color Themes
   Plug 'jdkanani/vim-material-theme'
+  Plug 'joshdick/onedark.vim'
 
   " Dev icons. (must load last)
   Plug 'ryanoasis/vim-devicons' " Nerd fonts file/symbol icons
@@ -177,7 +178,7 @@ else
   set t_Co=256
 endif
 
-colorscheme material-theme
+colorscheme onedark
 " }}}
 
 " Status & Info {{{
