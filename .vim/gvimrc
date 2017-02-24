@@ -2,3 +2,4 @@
 set gfn=Sauce\ Code\ Pro\ Light\ Nerd\ Font\ Complete:h11
 " linespace only works in gui vim, not terminal vim
 set linespace=3
+set guioptions=
