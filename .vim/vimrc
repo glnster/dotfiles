@@ -42,7 +42,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'ervandew/supertab' " Tab autocompletion
   Plug 'tpope/vim-surround' " cs[from][to] (change surrounds), ds (delete surrounds)
   Plug 'scrooloose/syntastic' " Linter
-  Plug 'othree/yajs.vim' " yet another js syntax highlighter
+  Plug 'othree/yajs.vim', { 'for': 'javascript' } " yet another js syntax highlighter
 
   " Color Themes
   Plug 'jdkanani/vim-material-theme'
