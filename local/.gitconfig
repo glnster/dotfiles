@@ -9,7 +9,7 @@ email = user@example.com
 # For older Git installations use matching
 default=matching
 
-  
+
 [alias]
 
   # View abbreviated SHA, description, and history graph of the latest 20 commits
@@ -92,7 +92,7 @@ default=matching
   excludesfile = ~/.gitignore_global
   attributesfile = ~/.gitattributes
 
-  editor = /usr/bin/vim
+  editor = vim
 
   # Treat spaces before tabs and all kinds of trailing whitespace as an error
   # [default] trailing-space: looks for spaces at the end of a line
