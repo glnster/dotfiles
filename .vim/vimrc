@@ -16,7 +16,6 @@ call plug#begin('~/.vim/bundle')
   Plug 'ctrlpvim/ctrlp.vim', " Fuzzy filename matcher
   Plug 'raimondi/delimitmate' " Insert-mode auto-completion for quotes, parens, brackets
   Plug 'editorconfig/editorconfig-vim' " For consistent coding style
-  Plug 'isruslan/vim-es6' " es6 syntax and snippets
   Plug 'mattn/emmet-vim' " Emmet expansion
   Plug 'tpope/vim-fugitive' " Git inigration for vim
   Plug 'ktonga/vim-follow-my-lead' " ,fml to display all leader key mappings
@@ -24,29 +23,34 @@ call plug#begin('~/.vim/bundle')
   Plug 'junegunn/fzf.vim' " Fuzzy finder vim plugin for fzf above
   Plug 'justinmk/vim-gtfo' " :gof :got open in file manager, terminal
   Plug 'airblade/vim-gitgutter' " Git in ur gutter
-  Plug 'othree/html5.vim' " HTML5 syntax enhancements
   Plug 'nathanaelkane/vim-indent-guides' " ,ig Visually display indent guides
-  Plug 'othree/javascript-libraries-syntax.vim' " js syntax highlighting
-  Plug 'pangloss/vim-javascript' " Better es6/es2015 syntax support
-  Plug 'elzr/vim-json' " JSON syntax enhancments for vim
   Plug 'Valloric/ListToggle' " Quickly toggle Quickfix and Location panels
   Plug 'lukhio/vim-mapping-conflicts' " :CheckMapping checks for key mapping conflicts
-  Plug 'mustache/vim-mustache-handlebars' " Handlebars syntax enhancements
   Plug 'scrooloose/nerdtree' " File manager
   Plug 'scrooloose/nerdcommenter' " Quickly toggle comment blocks
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Colored nerdtree icons
   Plug 'xuyuanp/nerdtree-git-plugin' " Git status in nerdtree
-  Plug 'cakebaker/scss-syntax.vim' " Sass/Scss syntax enhancements
   Plug 'andrewradev/splitjoin.vim' " Split and join lines
   Plug 'mhinz/vim-startify' " Fancy start screen showing recently edited files
   Plug 'ervandew/supertab' " Tab autocompletion
   Plug 'tpope/vim-surround' " cs[from][to] (change surrounds), ds (delete surrounds)
   Plug 'scrooloose/syntastic' " Linter
+
+  " Syntax support
+  Plug 'hail2u/vim-css3-syntax' " css syntax
+  Plug 'isruslan/vim-es6' " es6 syntax and snippets
+  Plug 'othree/html5.vim' " HTML5 syntax enhancements
+  Plug 'othree/javascript-libraries-syntax.vim' " js syntax highlighting
+  Plug 'pangloss/vim-javascript' " Better es6/es2015 syntax support
+  Plug 'elzr/vim-json' " JSON syntax enhancments for vim
+  Plug 'mustache/vim-mustache-handlebars' " Handlebars syntax enhancements
+  Plug 'cakebaker/scss-syntax.vim' " Sass/Scss syntax enhancements
   Plug 'othree/yajs.vim', { 'for': 'javascript' } " yet another js syntax highlighter
 
   " Color Themes
   Plug 'jdkanani/vim-material-theme'
   Plug 'joshdick/onedark.vim'
+  Plug 'altercation/vim-colors-solarized'
 
   " Dev icons. (must load last)
   Plug 'ryanoasis/vim-devicons' " Nerd fonts file/symbol icons
@@ -157,8 +161,8 @@ set textwidth=80 " text wrap
 if has("autocmd")
   " Languages with specific tabs/space requirements
   autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
-  " Automatically strip trailing whitespace on file save using better-whitespace
-  autocmd FileType css,html,js,json,md,php,py,rb,scss,sh,txt autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
+  " Automatically strip trailing whitespace on file save
+  autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
   " Don't treat json as javascript
   autocmd BufRead,BufNewFile *.json set filetype=json
   " fdoc is yaml
@@ -169,6 +173,14 @@ if has("autocmd")
   " automatically rebalance windows on vim resize
   autocmd VimResized * :wincmd =
 endif
+
+" strip trailing spaces
+fun! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfun
 " }}}
 
 " GUI & Theme {{{
@@ -179,6 +191,8 @@ else
 endif
 
 colorscheme onedark
+" let g:solarized_termtrans=1
+" colorscheme solarized
 " }}}
 
 " Status & Info {{{
