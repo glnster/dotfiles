@@ -4,17 +4,28 @@
 My Vim cheat sheet
 
 
-== For Vimwiki help see ==
-* :h vimwiki-syntax
-* :h vimwiki-mappings
-* :h vimwiki-commands
+== File Navigation ==
+* open in file manager, terminal
+  - :gof  :got
 
+= Buffers =
+* List buffers (Buffergator)
+  - ,b
+* Delete (close) buffer
+  - ,d
+* jump between buffers
+	- ,- and ,=
+	- ,b (open buffergator)
 
-== Session ==
-* open previous session
-	- vim -S
-* save vim session
-	- :Obsess
+= Tabs =
+* prev/next tab
+  - ,th  ,tl
+* new tab
+  - ,tn
+* close tab
+  - ,tw
+
+= Windows =
 * cycle between windows
 	- ctrl+w ctrl+w
 	- ctrl+h/l
@@ -22,9 +33,6 @@ My Vim cheat sheet
 	- alt+v, alt+s
 * jump between splits
 	- ctrl+h, ctrl+l (el)
-* jump between buffers
-	- ,- and ,=
-	- ,b (open buffergator)
 * resize splits
 	- Alt+h, Alt+l (el)
 * close/combine splits
@@ -44,37 +52,68 @@ My Vim cheat sheet
 	- n, N
 * select word instances
 	- Ctrl+d, Ctrl+p, Ctrl+x
+* Search and replace word under cursor
+  - ,*
 
 
 == Edit ==
+* insert new line
+  - ,<Enter>
 * indent (in normal mode do)
-	- >> and<<
-	- Ctrl+t/d?
-*  move line up/down
+	- >> and <<
+*  move line up/down (Mac only)
 	-  Alt+j/k
 *  duplicate line
 	-  V y p
+* Join lines
+  - J
 *  How to comment
 	-  ,cc
+* Change surrounds
+  - cs[from][to]
+* Delete surrounds
+  - ds
 *  Multi cursor edit
 	-  place cursor, Ctrl-v, move selection, press capital I, type your edit, Esc
 	-  or use gn (http://vimcasts.org/episodes/operating-on-search-matches-using-gn/)
+* Search and replace word under cursor
+  - ,*
 
-== Plug ==
-* Update plugins
-	- :PlugInstall, or :PlugUpdate
+
+== Editor Movement ==
+* Mark jumping
+  - '
+* Highlight last inserted text
+  - gV
+
+
+== Folds, Guides ==
+* open all folds
+  - zR
+* open level fold
+  - <space>  or  zr
+* close all folds
+  - zM  or zm (by level)
+* toggle indent guides
+  - ,ig
+
+== Vim & Plugins ==
 * reload vimrc
 	- :so $MYVIMRC
 	- ,V
+* Startify
+  - ,S
+* set file to modifiable/not-mod
+  - :set ma   :set noma
+* display leader key mappings
+  - ,fml
+* check key map conflicts
+  - :CheckMapping
+
+
 
 == NerdTree ==
 * ‘*’ means executable
 * m to bring up menu
 	- a to add file
 	- append / to create folder
-
-
-
-== Todo ==
-[  ] setup eslint and stylelint
-

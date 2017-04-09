@@ -1,11 +1,8 @@
 set nocompatible " Disable legacy vi compatiblity
-" Don't let Vimwiki override Tab
-nmap <leader>wn <Plug>VimwikiNextLink
-nmap <Leader>wp <Plug>VimwikiPrevLink
 
 " Plugins {{{
 " Some vim-plug cmds: PlugInstall, PlugUpdate, PlugClean, PlugUpgrade
-call plug#begin('~/.vim/bundle')
+call plug#begin('$HOME/.vim/bundle')
   Plug 'mileszs/ack.vim' " Vim ack/ag integration
   Plug 'bling/vim-airline' " Fancy statusbar
   Plug 'vim-airline/vim-airline-themes' " Themes for fancy statusbar
@@ -19,7 +16,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'mattn/emmet-vim' " Emmet expansion
   Plug 'tpope/vim-fugitive' " Git inigration for vim
   Plug 'ktonga/vim-follow-my-lead' " ,fml to display all leader key mappings
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'dir': '$HOME/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim' " Fuzzy finder vim plugin for fzf above
   Plug 'justinmk/vim-gtfo' " :gof :got open in file manager, terminal
   Plug 'airblade/vim-gitgutter' " Git in ur gutter
@@ -86,8 +83,8 @@ set diffopt+=vertical " Always use vertical diffs
 set noswapfile " no more weirdo swap files
 set nobackup " no more weirdo backup files
 set nowritebackup " no more weirdo write backup files
-set backupdir=~/.backup " Where backups would go if we had them
-set dir=~/.swap " Where swap files would go if we had them
+set backupdir=$HOME/.backup " Where backups would go if we had them
+set dir=$HOME/.swap " Where swap files would go if we had them
 set directory-=.   " don't store swapfiles in the current directory
 " }}}
 
@@ -128,7 +125,7 @@ endif
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 " CtrlP settings
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+set runtimepath^=$HOME/.vim/bundle/ctrlp.vim
 let g:ctrlp_show_hidden = 1 " Show hidden files when using ctrlp
 let g:ctrlp_match_window = 'order:ttb,max:20'
 " }}}
@@ -471,7 +468,7 @@ nnoremap <leader>P :CtrlPClearCache<CR>:CtrlP<CR>
 nnoremap <leader>S :Startify<CR>
 
 " Hot Reload vimrc
-noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+noremap <silent> <leader>V :source $HOME/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
