@@ -23,31 +23,6 @@ grsHh() {
   done
 }
 
-# git apply patch
-gap() {
-  getGap=true;
-  while $getGap; do
-    echo
-    echo "File:" ~/Downloads/*.patch(om[1])
-    read "yn?Apply patch? y/n: "
-    case $yn in
-        [Yy]* )
-          echo
-          git apply ~/Downloads/*.patch(om[1]);
-          getGap=false;
-          ;;
-        [Nn]* )
-          echo
-          getGap=false;
-          ;;
-        * )
-          echo
-          echo "Please answer y or n."
-          ;;
-    esac
-  done
-}
-
 # Start browser-sync on current WP project.
 # You must be in the project's directory.
 bsync() {
