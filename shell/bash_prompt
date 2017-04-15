@@ -108,8 +108,6 @@ set_prompts() {
         [ -n "$s" ] && s="$s"
         echo -e " $(tput sgr0)(${1}${branch}$s$r$(tput sgr0))";
 
-
-
         return
     }
 
