@@ -48,6 +48,7 @@ call plug#begin('$HOME/.vim/bundle')
   Plug 'jdkanani/vim-material-theme'
   Plug 'joshdick/onedark.vim'
   Plug 'altercation/vim-colors-solarized'
+  Plug 'dikiaap/minimalist'
 
   " Dev icons. (must load last)
   Plug 'ryanoasis/vim-devicons' " Nerd fonts file/symbol icons
@@ -187,7 +188,8 @@ else
   set t_Co=256
 endif
 
-colorscheme onedark
+colorscheme minimalist
+" colorscheme onedark
 " let g:solarized_termtrans=1
 " colorscheme solarized
 " }}}
@@ -450,6 +452,11 @@ map <silent> ¬ <C-w><
 map <silent> ß :split<CR>
 map <silent> √ :vsplit<CR>
 
+nnoremap <silent> <S-left> :vertical resize -10<CR>
+nnoremap <silent> <S-right> :vertical resize +10<CR>
+nnoremap <silent> <S-up> :resize +10<CR>
+nnoremap <silent> <S-down> :resize -10<CR>
+
 " }}}
 
 "---------- Plugin-related Keymaps ---------- {{{
@@ -457,7 +464,7 @@ nnoremap <leader>gs :Gstatus<CR><C-w>t<C-w>H
 nnoremap <leader>gb :Gblame<CR>
 noremap <leader>g :GitGutterToggle<CR>
 " Custom FZF find
-nnoremap <C-f> :Find<space>
+" nnoremap <C-f> :Find<space>
 imap <C-x><C-l> <plug>(fzf-complete-line)
 nnoremap <leader>a :Ack!<space>
 nnoremap <leader>aq :Ack! -Q<space>
