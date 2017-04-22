@@ -21,6 +21,7 @@ source ~/.extra
 
 # Turn off command autocorrection
 unsetopt CORRECT
+DISABLE_CORRECTION="true"
 
 # Load z
 # . /usr/local/etc/profile.d/z.sh

@@ -12,6 +12,7 @@ call plug#begin('$HOME/.vim/bundle')
   Plug 'docunext/closetag.vim' " Auto html5 tag closer
   Plug 'ctrlpvim/ctrlp.vim', " Fuzzy filename matcher
   Plug 'raimondi/delimitmate' " Insert-mode auto-completion for quotes, parens, brackets
+  Plug 'jimmyhchan/dustjs' " dustjs syntax highlighting
   Plug 'editorconfig/editorconfig-vim' " For consistent coding style
   Plug 'mattn/emmet-vim' " Emmet expansion
   Plug 'tpope/vim-fugitive' " Git inigration for vim
@@ -167,6 +168,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
   " md is markdown
   autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufNewFile,BufRead *.dust,*.dustjs,*.tl set filetype=dustjs
   autocmd BufRead,BufNewFile *.md set spell
   " automatically rebalance windows on vim resize
   autocmd VimResized * :wincmd =
@@ -473,6 +475,10 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>bp :CtrlPBuffer<CR>
 nnoremap <leader>P :CtrlPClearCache<CR>:CtrlP<CR>
 nnoremap <leader>S :Startify<CR>
+
+" Valloric/ListToggle
+let g:lt_location_list_toggle_map = '<leader>l'
+let g:lt_quickfix_list_toggle_map = '<leader>q'
 
 " Hot Reload vimrc
 noremap <silent> <leader>V :source $HOME/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
