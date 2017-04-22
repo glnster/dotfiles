@@ -13,3 +13,4 @@ Thumbs.db
 .vim/.netrwhist
 /local/*.bak
 .vim/session/*
+.vim/bundle/*

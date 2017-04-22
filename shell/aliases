@@ -17,17 +17,12 @@ alias .....="cd ../../../.."
 
 # File Manipulation
 alias rd="rmdir"
-alias rdf="rm -rf"
 alias md='echo "use mkd to mkdir and cd into it"'
 alias mmv="noglob zmv -W"
 alias t="trash"
 
 # File size
 alias fs="stat -f \"%z bytes\""
-
-# Jumps
-alias ht="cd /Applications/MAMP/htdocs"
-alias dot="cd ~/dotfiles"
 
 # Search
 alias grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
@@ -43,6 +38,7 @@ fi
 # Listing Aliases
 # List all files colorized in long format
 alias l="ls -lah ${colorflag}"
+alias ll="ls -lh ${colorflag}"
 
 # List symlinks
 alias lsym="ls -la . | grep \"\->\""
@@ -52,8 +48,6 @@ alias la="ls -lAh ${colorflag}"
 
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
-
-alias ll="ls -lh ${colorflag}"
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
@@ -83,8 +77,11 @@ alias gaa='git add -A'
 # alias gap='echo "Applying patch " && echo ~/Downloads/*.patch(mh-1[1]) && git apply ~/Downloads/*.patch(mh-1[1])'
 alias gaac='git add -A && git commit -m'
 
+# list local branches
 alias gb='for k in `git branch|perl -pe "s/^..//"`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort'
+# list all branches, local and remote
 alias gba='git branch -a'
+# list remote branches
 alias gbr='git branch --remote'
 
 alias gc='git commit -v'
@@ -97,38 +94,21 @@ alias gcs='git commit -S'
 
 alias gco='git checkout'
 alias gco-='git checkout -'
-alias gcd='git checkout develop'
-alias gch='git checkout hotfix'
-alias gcm='git checkout master'
-alias gcr='git checkout release'
 alias gcob='git checkout -b'
-
-alias gcon='git config --list'
-alias gcount='git shortlog -sn'
-alias gcp='git cherry-pick'
 
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gdt='git difftool'
 
 alias gf='git fetch'
-alias gfl='git flow'
-
-alias gg='git gui citool'
-alias gga='git gui citool --amend'
 
 alias gpl='git pull'
-alias gplnp='git pull origin $(current_branch) && git push origin $(current_branch)'
-alias gplo='git pull origin $(current_branch)'
 alias gplr='git pull --rebase'
-alias gplro='git pull --rebase origin $(current_branch)'
 
 alias gprep='less ~/dotfiles/gitprep.txt'
 
 alias gignore='git update-index --assume-unchanged'
 alias gignored='git ls-files -v | grep "^[[:lower:]]"'
-alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
-alias gk='gitk --all --branches'
 
 alias glg='git log --stat --max-count=10'
 alias glgg='git log --graph --max-count=10'
@@ -143,8 +123,6 @@ alias gmt='git mergetool --no-prompt'
 
 alias gp='echo use "gpsh"'
 alias gpsh='git push'
-alias gpo='git push origin $(current_branch)'
-alias gpoat='git push origin --all && git push origin --tags'
 
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
@@ -152,9 +130,7 @@ alias grbi='git rebase -i'
 alias grbm='git rebase master'
 alias grbim='git rebase -i master'
 
-alias grsH='git reset HEAD'
 alias grsclean='git reset --hard && git clean -dfx'
-# alias grsHh='git reset HEAD --hard'
 alias grshom='git reset --hard origin/master'
 alias grshod='git reset --hard origin/develop'
 
@@ -169,10 +145,6 @@ alias grv='git review'
 alias grvu='git review update'
 alias grvd='git review dcommit'
 
-alias gsps='git show --pretty=short --show-signature'
-# alias gsd='git svn dcommit'
-# alias gsr='git svn rebase'
-
 alias gss='git status -s'
 alias gst='git status'
 
@@ -185,19 +157,11 @@ alias gstad='git stash drop'
 alias gstap='git stash pop'
 alias gstas='git stash show --text'
 
-alias gsa='git submodule add'
-alias gsubup='git submodule update --init --recursive'
+# git track
+alias gtm='git branch -u origin/master'
 
-alias gtm='git branch $(current_branch) -u origin/master'
-
-alias gts='git tag -s'
-alias gunignore='git update-index --no-assume-unchanged'
-alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
-alias gundopush="git push -f origin HEAD^:master"
 alias gunstage="git reset --"
-alias gvt='git verify-tag'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
-alias gwip='git add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit -m "--wip--"'
 alias gwho='git config user.name && git config user.email'
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages

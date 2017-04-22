@@ -1,12 +1,12 @@
+# Move these to .extra or .local or down to a ruby section
 export RUBYOPT=rubygems
 
 # probably don't need these anymore
 # export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 
 # This loads RVM into a shell session.
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 
@@ -51,16 +51,10 @@ elif [ -f /etc/bash_completion ]; then
 fi;
 
 
-# Enable tab completion for `g` by marking it as an alias for `git`
-# if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-#   complete -o default -o nospace -F _git g;
-# fi;
-
-
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
-
+# Move these to .extra or .local
 # ORIG FROM RHEL BOX
 export NETREPO=svn+ssh://svn.corp.linkedin.com/netrepo/network
 export LIREPO=svn+ssh://svn.corp.linkedin.com/lirepo
