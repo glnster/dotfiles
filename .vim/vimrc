@@ -168,8 +168,8 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
   " md is markdown
   autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd BufNewFile,BufRead *.dust,*.dustjs,*.tl set filetype=dustjs
   autocmd BufRead,BufNewFile *.md set spell
+  autocmd BufNewFile,BufRead *.dust,*.dustjs,*.tl set filetype=dustjs
   " automatically rebalance windows on vim resize
   autocmd VimResized * :wincmd =
 endif
@@ -189,6 +189,7 @@ if $TERM_PROGRAM =~ 'iTerm'
 else
   set t_Co=256
 endif
+set termguicolors " True color
 
 colorscheme minimalist
 " colorscheme onedark

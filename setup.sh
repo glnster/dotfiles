@@ -20,6 +20,7 @@ shells=('aliases'
       'bashrc'
       'exports'
       'functions'
+      'tmux.conf'
       );
 zshs=('zpreztorc'
       'zprofile'
@@ -67,7 +68,7 @@ while $getZsh; do
           done
           getZsh=true;
           ;;
-      [Nn]* ) 
+      [Nn]* )
         echo "Ok, skipping Zsh symlinking.";
         getZsh=false;
         ;;
@@ -105,7 +106,7 @@ do
               fi
               getOW=false;
               ;;
-          [Nn]* ) 
+          [Nn]* )
             echo "Ok, skipping.";
             getOW=false;
             ;;
