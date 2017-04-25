@@ -95,6 +95,7 @@ alias gcs='git commit -S'
 alias gco='git checkout'
 alias gco-='git checkout -'
 alias gcob='git checkout -b'
+alias gcm='git checkout master'
 
 alias gd='git diff'
 alias gdc='git diff --cached'
