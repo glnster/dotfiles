@@ -26,9 +26,8 @@ DISABLE_CORRECTION="true"
 # Load z
 # . /usr/local/etc/profile.d/z.sh
 
-# Unalias g=git created by zprezto's git module
+# Unalias git aliases created by zprezto's git module
 unalias g
-# Unalias git force push
 unalias gpf
 unalias grc
 unalias gri
