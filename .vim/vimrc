@@ -6,6 +6,7 @@ call plug#begin('$HOME/.vim/bundle')
   Plug 'mileszs/ack.vim' " Vim ack/ag integration
   Plug 'bling/vim-airline' " Fancy statusbar
   Plug 'vim-airline/vim-airline-themes' " Themes for fancy statusbar
+  Plug 'w0rp/ale' " async Linter
   Plug 'jiangmiao/auto-pairs' " Automatically insert pairs of quotes/braces/brackets while typing
   Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespace
   Plug 'jeetsukumaran/vim-buffergator' " Buffer management
@@ -32,7 +33,7 @@ call plug#begin('$HOME/.vim/bundle')
   Plug 'mhinz/vim-startify' " Fancy start screen showing recently edited files
   Plug 'ervandew/supertab' " Tab autocompletion
   Plug 'tpope/vim-surround' " cs[from][to] (change surrounds), ds (delete surrounds)
-  Plug 'scrooloose/syntastic' " Linter
+"  Plug 'scrooloose/syntastic' " Linter
 
   " Syntax support
   Plug 'hail2u/vim-css3-syntax' " css syntax
@@ -303,6 +304,14 @@ let g:syntastic_style_error_symbol = '✖'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_warning_symbol = '⚠'
 "}}}
+
+
+" Ale {{{
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+" }}}
+
 
 " Airline {{{
 let g:airline_powerline_fonts = 1
