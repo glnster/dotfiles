@@ -71,7 +71,7 @@ alias map="xargs -n1"
 # Shortcuts
 # vim & sublime - see .functions
 
-Tmux
+# Tmux
 alias tmxa="tmux a -t"
 
 # Git
@@ -120,7 +120,6 @@ alias glgga='git log --graph --decorate --all'
 alias glo='git log --oneline --decorate --color'
 alias globurl='noglob urlglobber '
 alias glog='git log --oneline --decorate --color --graph'
-alias glp=_git_log_prettily
 
 alias gm='git merge'
 alias gmt='git mergetool --no-prompt'
