@@ -23,8 +23,6 @@ source ~/.extra
 unsetopt CORRECT
 DISABLE_CORRECTION="true"
 
-# Load z
-# . /usr/local/etc/profile.d/z.sh
 
 # Unalias git aliases created by zprezto's git module
 unalias g
