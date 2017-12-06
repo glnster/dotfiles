@@ -73,6 +73,7 @@ alias map="xargs -n1"
 
 # Tmux
 alias tmxa="tmux a -t"
+alias tmx0="tmux a -t 0"
 
 # Git
 alias ga='git add'
