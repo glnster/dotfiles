@@ -1,14 +1,14 @@
 ==========
-> grvu (final review update)
-> gcm
+> grvu
+> gcom
 > mint update
     (or gplr)
 > gco <branch>
-> grbim (git rebase -i master)
+> grbim
     %s/^pick/f/g
-> grvd (git review dcommit)
-> gcm
+> grvd
+> gcom
 > git merge <branch>
 > mint submit
-    (or git push origin master)
+    (or git submit --async)
 ==========
