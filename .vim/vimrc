@@ -193,9 +193,9 @@ else
 endif
 set t_ut=
 
-colorscheme codedark
+" colorscheme codedark
 " colorscheme minimalist
-" colorscheme onedark
+colorscheme onedark
 " let g:solarized_termtrans=1
 " colorscheme solarized
 " }}}

@@ -87,19 +87,21 @@ alias gb='for k in `git branch|perl -pe "s/^..//"`;do echo -e `git show --pretty
 alias gba='git branch -a'
 # list remote branches
 alias gbr='git branch --remote'
+# rename branch. While on the branch you want to rename:
+alias gbren='git branch -m '
 
 alias gc='git commit -v'
 alias gc!='git commit -v --amend'
 alias gca='git commit -v -a'
 alias gca!='git commit -v -a --amend'
 alias gcln='git clean -fd'
-alias gcmsg='git commit -m'
+alias gcm='git commit -m'
 alias gcs='git commit -S'
 
 alias gco='git checkout'
 alias gco-='git checkout -'
 alias gcob='git checkout -b'
-alias gcm='git checkout master'
+alias gcom='git checkout master'
 
 alias gd='git diff'
 alias gdc='git diff --cached'
