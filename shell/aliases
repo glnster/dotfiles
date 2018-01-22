@@ -78,6 +78,8 @@ alias tmx0="tmux a -t 0"
 # Git
 alias ga='git add'
 alias gaa='git add -A'
+#stage all but untracked files
+alias gau='git add -u'
 # alias gap='echo "Applying patch " && echo ~/Downloads/*.patch(mh-1[1]) && git apply ~/Downloads/*.patch(mh-1[1])'
 alias gaac='git add -A && git commit -m'
 
