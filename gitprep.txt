@@ -9,6 +9,6 @@
 > grvd
 > gcom
 > git merge <branch>
-> mint submit
-    (or git submit --async)
+> git submit --async
+    (or mint submit)
 ==========
