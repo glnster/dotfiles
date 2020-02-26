@@ -1,14 +1,15 @@
 ==========
-> grvu
-> gcom
+> grvc (grv create --noprompt)
+> grvu (grv update)
+> gcom (gco master)
 > mint update
-    (or gplr)
+    or gplr
 > gco <branch>
 > grbim
     %s/^pick/f/g
-> grvd
+> grvd (grv dcommit)
 > gcom
-> git merge <branch>
-> git submit --async
-    (or mint submit)
+> gm <branch> (git merge branch)
+> gsuba (git submit --async)
+    or mint submit
 ==========
