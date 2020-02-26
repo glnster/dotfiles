@@ -151,7 +151,7 @@ alias grup='git remote update'
 
 alias grv='git review'
 alias grvu='git review update'
-alias grvc='git review create --noprompt'
+alias grvc='git review create --no-prompt'
 alias grvd='git review dcommit'
 
 alias gss='git status -s'
