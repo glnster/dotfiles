@@ -1,5 +1,5 @@
 ==========
-> grvc (grv create --noprompt)
+> grvc (grv create --no-prompt)
 > grvu (grv update)
 > gcom (gco master)
 > mint update
