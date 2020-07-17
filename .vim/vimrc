@@ -80,7 +80,11 @@ set scrolloff=3   " Start scrolling three lines before the horizontal window bor
 set nostartofline   " Don’t reset cursor to start of line when moving around.
 set clipboard=unnamed   " yank and paste with the system clipboard
 set modelines=1 " To use special fold mode for vim file
-set diffopt+=vertical " Always use vertical diffs
+" Use vertical diffs
+if &diff
+    set diffopt-=internal
+    set diffopt+=vertical
+endif
 " }}}
 
 " Swap/Backup file settings {{{
