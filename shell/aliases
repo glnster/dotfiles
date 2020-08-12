@@ -19,7 +19,6 @@ alias .....="cd ../../../.."
 alias rd="rmdir"
 alias md='echo "use mkd to mkdir and cd into it"'
 alias mmv="noglob zmv -W"
-alias t="trash"
 
 # File size
 alias fs="stat -f \"%z bytes\""
