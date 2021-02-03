@@ -2,11 +2,14 @@ if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
-export NVM_DIR="/Users/glenn/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# LOAD NVM
+# export NVM_DIR="/Users/glenn/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Add RVM to PATH for scripting
-export PATH="/usr/local/git/bin/git:$PATH:$HOME/.rvm/bin"
-#export PATH="/usr/local/git/bin/git:$PATH"
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export PATH="/usr/local/git/bin/git:$PATH:$HOME/.rvm/bin"
+# #export PATH="/usr/local/git/bin/git:$PATH"
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

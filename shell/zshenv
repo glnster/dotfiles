@@ -4,15 +4,16 @@
 
 echo Sourcing zshenv...
 
-if [[ "$OSTYPE" == darwin* ]]; then
-  export NVM_DIR="/Users/glenn/.nvm"
-else
-  export NVM_DIR="$HOME/.nvm"
-fi;
+# LOAD NVM
+# if [[ "$OSTYPE" == darwin* ]]; then
+#   export NVM_DIR="/Users/glenn/.nvm"
+# else
+#   export NVM_DIR="$HOME/.nvm"
+# fi;
 
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-echo nvm loaded.
+# echo nvm loaded.
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
