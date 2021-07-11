@@ -36,6 +36,9 @@ unalias gsp
 unalias gsw
 unalias gsx
 
+#VSCode, node, brew
+PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/usr/local/bin/node:/opt/homebrew/bin:$PATH"
+
 # git version
 export PATH="/usr/local/git/bin/git:$PATH"
 
