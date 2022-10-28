@@ -81,3 +81,5 @@ export FZF_DEFAULT_COMMAND='g --files --hidden --glob "!.git/*"'
 export NODE_OPTIONS="--max-old-space-size=8192"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="/usr/local/opt/node@16/bin:$PATH"
+export PATH="/usr/local/opt/node@14/bin:$PATH"

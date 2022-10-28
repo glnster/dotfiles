@@ -6,7 +6,9 @@
 
 # ------------ FILE SYS -------------
 # Pygmentize. Also see functions.
-alias cat='pygmentize -g -O linenos=1'
+# alias cat='pygmentize -g -O linenos=1'
+
+alias cat='bat --color=always'
 
 # Navigation
 alias -- -="cd -"

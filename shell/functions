@@ -48,13 +48,15 @@ gif() {
   fi
 }
 
-#Pygmentize with line nums
+#Colorized alias list with line nums
 al() {
-  alias | pygmentize -l bash -f terminal256 | perl -e 'print ++$i."  $_" for <>'
+  alias | cat -l bash
 }
+
 alg() {
-  alias | grep 'git' | pygmentize -l bash -f terminal256 | perl -e 'print ++$i."  $_" for <>'
+  alias | grep 'git' | cat -l bash
 }
+
 pyg() {
   pygmentize -g $1 | perl -e 'print ++$i."  $_" for <>'
 }
@@ -203,9 +205,9 @@ function gz() {
 # Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
 function json() {
   if [ -t 0 ]; then # argument
-    python -mjson.tool <<< "$*" | pygmentize -l javascript;
+    python -mjson.tool <<< "$*" | cat -l javascript;
   else # pipe
-    python -mjson.tool | pygmentize -l javascript;
+    python -mjson.tool | cat -l javascript;
   fi;
 }
 
