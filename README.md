@@ -18,11 +18,7 @@ E.g. In your ~ directory, do...
 
 ### other apps
 - [t](https://github.com/sindresorhus/trash) - Cross-platform command-line app for moving files and directories to the trash - A safer alternative to `rm`
-- [pygmentize](http://pygments.org/) - syntax highlighter I use to colorize `cat`, `alias`.
-To install...
-	```% easy_install Pygments```
-
-- gvm, nvm, jenv, rvm
+- [bat](https://github.com/sharkdp/bat) - CLI syntax highlighter/colorizer
 - [lorem](https://github.com/per9000/lorem) - CLI lorem ipsum where you can specify char counts, etc.
 
 ### running setup.sh
@@ -37,14 +33,14 @@ To install...
 - prompts for your full Git name, email, and push default
 - does a ```git config --global --replace-all``` using your input, which updates your new, local .gitconfig
 
-## Featured commands
-Just some commands I'd like to highlight:
+## Featured
+Just some highlights included in this dotfiles:
 - `al` - list aliases colorized
 - `alg` - list 'git' aliases colorized
-- `pyg $1` - like `cat`, print file to screen syntax-highlighted & line-numbered
 - `t $1` - like `rm`, but moves files to trash
 - `gco-` - quickly git-checkout toggle between 2 branches
 - `-` - quickly cd toggle between 2 paths
+- `vim` - customizations/enahncements, vim-plug plugin manager
 
 ## glnster Prezto prompt
 #### A theme based on steeef theme that features:
@@ -71,11 +67,6 @@ Local/customized files that should stay local/private...
 - ~/.gitconfig (git author, email, push setting)
 - ~/.vim.local
 - ~/.vim.bundles.local
-
-## TODO
-- test install from scratch
-- brew/cask to install zsh, prezto, apps
-- bring in sublime text prefs
 
 ## Credits
 **Huge thanks** to the following people for their dotfile/coding inspiration.
