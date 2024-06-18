@@ -20,6 +20,7 @@ E.g. In your ~ directory, do...
 - [t](https://github.com/sindresorhus/trash) - Cross-platform command-line app for moving files and directories to the trash - A safer alternative to `rm`
 - [bat](https://github.com/sharkdp/bat) - CLI syntax highlighter/colorizer
 - [lorem](https://github.com/per9000/lorem) - CLI lorem ipsum where you can specify char counts, etc.
+- [ggb](https://github.com/christianalares/git-branch-selector) - An interactive CLI tool for choosing local branches in your terminal.
 
 ### running setup.sh
 
