@@ -1,4 +1,7 @@
+emulate sh
 source ~/.profile
+emulate zsh
+
 #
 # Executes commands at login pre-zshrc.
 #
@@ -78,3 +81,12 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 fi
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Created by `pipx` on 2025-08-22 15:31:00
+export PATH="$PATH:/Users/glenn/.local/bin"
+
+# Setting PATH for Python 3.13
+# The original version is saved in .zprofile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin:${PATH}"
+export PATH
+
