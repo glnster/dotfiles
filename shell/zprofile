@@ -5,9 +5,7 @@ emulate zsh
 #
 # Executes commands at login pre-zshrc.
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+
 
 #
 # Browser
@@ -21,7 +19,7 @@ fi
 # Editors
 #
 
-export EDITOR='vim'
+export EDITOR='nvim'
 export VISUAL='code'
 export PAGER='less'
 
@@ -32,24 +30,6 @@ export PAGER='less'
 if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
-
-#
-# Paths
-#
-
-# Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath mailpath path
-
-# Set the the list of directories that cd searches.
-# cdpath=(
-#   $cdpath
-# )
-
-# Set the list of directories that Zsh searches for programs.
-path=(
-  /usr/local/{bin,sbin}
-  $path
-)
 
 #
 # Less
@@ -82,8 +62,32 @@ fi
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+#
+# Paths
+#
+
+export PATH="/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH="/usr/local/git/bin:$PATH"
+
+# Ensure path arrays do not contain duplicates.
+typeset -gU cdpath fpath mailpath path
+
+# Set the the list of directories that cd searches.
+# cdpath=(
+#   $cdpath
+# )
+
+# Set the list of directories that Zsh searches for programs.
+path=(
+  /usr/local/{bin,sbin}
+  $path
+)
+
+# Set docker path
+export PATH="$PATH:~/.docker/bin"
+
 # Created by `pipx` on 2025-08-22 15:31:00
-export PATH="$PATH:/Users/glenn/.local/bin"
+export PATH="$PATH:~/.local/bin"
 
 # Setting PATH for Python 3.13
 # The original version is saved in .zprofile.pysave

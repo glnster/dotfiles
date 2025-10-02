@@ -60,6 +60,9 @@ alias map="xargs -n1"
 # Shortcuts
 # vim & sublime - see .functions
 
+alias lg='lazygit'
+alias nv='nvim'
+
 # Tmux
 alias tmxa="tmux a -t"
 alias tmx0="tmux a -t 0"
@@ -96,7 +99,7 @@ alias gcom='git checkout master'
 
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias gdt='git difftool'
+alias gdt='git diff | git-split-diffs --color | less -RFX'
 
 alias gf='git fetch'
 
@@ -183,8 +186,6 @@ command -v md5sum > /dev/null || alias md5sum="md5"
 
 # OS X has no `sha1sum`, so use `shasum` as a fallback
 command -v sha1sum > /dev/null || alias sha1sum="shasum"
-
-
 
 # ------------ SYSTEM -------------
 # Reload the shell (i.e. invoke as a login shell)
