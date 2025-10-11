@@ -36,11 +36,13 @@ unalias gsp
 unalias gsw
 unalias gsx
 
-#VSCode, node, brew
+# VSCode, node, brew path setup
 PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/usr/local/bin/node:/opt/homebrew/bin:$PATH"
+# VSCode integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
 
 # git version
-export PATH="/usr/local/git/bin/git:$PATH"
+export PATH="/usr/bin:$PATH"
 
 # Keypad bindings
 # 0 . Enter
