@@ -95,7 +95,7 @@ alias gcs='git commit -S'
 alias gco='git checkout'
 alias gco-='git checkout -'
 alias gcob='git checkout -b'
-alias gcom='git checkout master'
+alias gcom='git checkout main'
 
 alias gd='git diff'
 alias gdc='git diff --cached'
@@ -128,11 +128,11 @@ alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbs='git rebase --skip'
 alias grbi='git rebase -i'
-alias grbm='git rebase master'
-alias grbim='git rebase -i master'
+alias grbm='git rebase main'
+alias grbim='git rebase -i main'
 
 alias grsclean='git reset --hard && git clean -dfx'
-alias grshom='git reset --hard origin/master'
+alias grshom='git reset --hard origin/main'
 alias grshod='git reset --hard origin/develop'
 
 alias gr='git remote'
@@ -162,7 +162,7 @@ alias gstas='git stash show --text'
 alias gsuba='git submit --async'
 
 # git track
-alias gtm='git branch -u origin/master'
+alias gtm='git branch -u origin/main'
 
 alias gunstage="git reset --"
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
